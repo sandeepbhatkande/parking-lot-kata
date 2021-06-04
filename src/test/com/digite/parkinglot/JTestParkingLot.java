@@ -39,4 +39,14 @@ public class JTestParkingLot {
         assertEquals("All slots are booked", w_parkingLot.allocateSlotToParkCar(w_car));
     }
 
+    @Test
+    public void testDeAllocateSlotOfParkedCar_success() {
+        assertEquals("Slot 1 is available for parking", w_parkingLot.deAllocateSlot("MH11222"));
+    }
+
+    @Test
+    public void testDeAllocateSlotOfParkedCar_deallocationFailed() {
+        assertEquals("Car is not parked", w_parkingLot.deAllocateSlot("MH34567222"));
+    }
+
 }

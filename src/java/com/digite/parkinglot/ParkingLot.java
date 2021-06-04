@@ -35,4 +35,27 @@ public class ParkingLot {
 
         return allocationStatus;
     }
+
+    public String deAllocateSlot (String w_carNo) {
+        String w_deallocationStaus = "";
+        int w_slotTodeallocate = 0;
+
+        for (Integer slot: w_slotAllocationMap.keySet())
+        {
+            Car car = w_slotAllocationMap.get(slot);
+
+            if (w_carNo == car.getREG_NO()) {
+                w_slotTodeallocate = slot;
+                break;
+            }
+        }
+
+        if (w_slotTodeallocate > 0) {
+            w_deallocationStaus = "Slot " + w_slotTodeallocate + " is available for parking";
+        } else {
+            w_deallocationStaus = "Car is not parked";
+        }
+
+        return w_deallocationStaus;
+    }
 }
