@@ -1,7 +1,6 @@
 package com.digite.kata.parkinglot;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class ParkingLot 
@@ -28,15 +27,21 @@ public class ParkingLot
     		Collections.sort(nonAllocatedSlots);
     		return nonAllocatedSlots.get(0);
     	}
-    	else if (a_totalSlots > 0)
+    	else if (a_nextSlotNumber <= a_totalSlots)
     		return a_nextSlotNumber++;
     	else 
     		return 0;
     }
     
-    public void addCarsInList(Car c)
+    public String addCarsInList(Car c)
     {
- 	   carList.add(c);
+    	if (c.getSlotNo() > 0)
+    	{
+    		carList.add(c);
+    		return "Car with Registration number: " + c.getRegistrationNo() + " " + c.getSlotNo() + "added";
+    	}
+    	else 
+    		return "Sorry, parking lot is full";
     }
     
     public ArrayList<Car> getCarList()

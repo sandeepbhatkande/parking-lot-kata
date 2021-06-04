@@ -20,7 +20,7 @@ public class JTestParkingLot
     }
     
     @Test
-    public void testGetCarsList()
+    public void testGetCarsListWithoutLeaveCar()
     {
         ParkingLot pl = new ParkingLot(3);
         pl.getTotalSlots();
@@ -56,7 +56,7 @@ public class JTestParkingLot
     
     
     @Test
-    public void testGetNonAllocatedSlots()
+    public void testGetCarsListWhenLotIsFull()
     {
         ParkingLot pl = new ParkingLot(3);
         pl.getTotalSlots();
@@ -69,20 +69,16 @@ public class JTestParkingLot
         
         int slotNo3 = pl.getNextSlotNumber();
         Car c3 = new Car("KA-01-BB-0001", "Black", slotNo3);
-       
         
         pl.addCarsInList(c1);
         pl.addCarsInList(c2);
         pl.addCarsInList(c3);
         
-        ArrayList<Car> w_list =  pl.getCarList();
-       
-        pl.leaveCar(c1);
-        ArrayList<Integer> w_allocatedSlots = new ArrayList<Integer>(); 
-        w_allocatedSlots.add(1);
-        assertEquals(w_allocatedSlots.toString(), pl.getNonAllocatedSlots().toString());
+        int slotNo4 = pl.getNextSlotNumber();
+        Car c4 = new Car("KA-01-BB-0001", "Black", slotNo4);
+        
+        assertEquals("Sorry, parking lot is full", pl.addCarsInList(c4));
       }
-    
     
     @Test
     public void testGetCarsListWhenOneCarIsRemoved()
@@ -113,6 +109,34 @@ public class JTestParkingLot
         pl.addCarsInList(c4);
         
         assertEquals(1, w_list.get(2).getSlotNo());
+     }
+    
+    @Test
+    public void testGetNonAllocatedSlotsWhenCarIsRemoved()
+    {
+        ParkingLot pl = new ParkingLot(3);
+        pl.getTotalSlots();
+        
+        int slotNo1 = pl.getNextSlotNumber();
+        Car c1 = new Car("KA-01-HH-1234", "White", slotNo1);
+        
+        int slotNo2 = pl.getNextSlotNumber();
+        Car c2 = new Car("KA-01-HH-9999", "White", slotNo2);
+        
+        int slotNo3 = pl.getNextSlotNumber();
+        Car c3 = new Car("KA-01-BB-0001", "Black", slotNo3);
+       
+        
+        pl.addCarsInList(c1);
+        pl.addCarsInList(c2);
+        pl.addCarsInList(c3);
+        
+        ArrayList<Car> w_list =  pl.getCarList();
+       
+        pl.leaveCar(c1);
+        ArrayList<Integer> w_allocatedSlots = new ArrayList<Integer>(); 
+        w_allocatedSlots.add(1);
+        assertEquals(w_allocatedSlots.toString(), pl.getNonAllocatedSlots().toString());
       }
 
 }
