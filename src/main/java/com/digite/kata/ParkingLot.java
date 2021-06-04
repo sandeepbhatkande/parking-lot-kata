@@ -25,4 +25,9 @@ public class ParkingLot
     {
         return m_availableList;
     }
+
+    public ArrayList<Integer> getBookedSlotList()
+    {
+        return m_bookedList;
+    }
 }

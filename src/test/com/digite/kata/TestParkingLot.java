@@ -30,7 +30,7 @@ public class TestParkingLot
     public void testBookedSlotListAtIntial()
     {
         ParkingLot w_parkLot = new ParkingLot(10);
-        Assertions.assertEquals(0, w_parkLot.getAvailableSlotList().size());
+        Assertions.assertEquals(0, w_parkLot.getBookedSlotList().size());
     }
 
 
