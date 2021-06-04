@@ -169,4 +169,23 @@ public class TestParkingLot
         Assertions.assertEquals("MH-02-5678",  w_parkLot.getCarListOfSameColor("Blue").get(1));
     }
 
+    @Test
+    public void testgetSlotListOfSameColor()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+        Car w_car2 = new Car("Violet", "MH-02-1234", "Peter");
+        w_parkLot.park(w_car2);
+        Car w_car3 = new Car("Blue", "MH-02-9876", "Olivia");
+        w_parkLot.park(w_car3);
+        w_parkLot.Leave(w_car2);
+        Car w_car4= new Car("Blue", "MH-02-5678", "Astrid");
+        w_parkLot.park(w_car4);
+
+        Assertions.assertEquals(2, w_parkLot.getSlotListOfSameColor("Blue").size());
+        Assertions.assertEquals(2, w_parkLot.getSlotListOfSameColor("Blue").get(0));
+        Assertions.assertEquals(3,  w_parkLot.getSlotListOfSameColor("Blue").get(1));
+    }
+
 }

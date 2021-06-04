@@ -1,6 +1,7 @@
 package com.digite.kata;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -161,6 +162,18 @@ public class ParkingLot
         ArrayList<String> w_list = new ArrayList<String>();
         if(m_colorWiseCarInfo.containsKey(a_color))
             w_list = m_colorWiseCarInfo.get(a_color);
+
+        return w_list;
+    }
+
+    public ArrayList<Integer> getSlotListOfSameColor(String a_color)
+    {
+        ArrayList<Integer> w_list = new ArrayList<Integer>();
+        for (int slot: m_slotWiseCarInfo.keySet())
+        {
+            if(a_color.equals(m_slotWiseCarInfo.get(slot).getColor()))
+                w_list.add(slot);
+        }
 
         return w_list;
     }
