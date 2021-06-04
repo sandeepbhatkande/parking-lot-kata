@@ -20,7 +20,14 @@ public class ParkingLot
     
     public int getNextSlotNumber()
     {
-    	if(_NextSlotNumber < _parkingSlot)
+    	if(!_removeCarSlotID.isEmpty())
+		{
+    		Collections.sort(_removeCarSlotID);
+    		int slot = _removeCarSlotID.get(0);
+    		_removeCarSlotID.remove(0);
+    		return slot;
+		}
+    	else if(_NextSlotNumber < _parkingSlot)
     		return ++_NextSlotNumber;
     	else
     		return 0;
@@ -31,15 +38,14 @@ public class ParkingLot
     	if(w_car.getslotNumber() > 0)
     	{
     		_carList.add(w_car);
-    		System.out.println("Allocated slot number:"+ _NextSlotNumber);
-    		return "Allocated slot number:"+ _NextSlotNumber;
+    		System.out.println("Allocated slot number:"+ w_car.getslotNumber());
+    		return "Allocated slot number:"+ w_car.getslotNumber();
     	}
     	else
     	{
     		System.out.println("Sorry, parking lot is full");
     		return "Sorry, parking lot is full";
     	}
-		 
 	 }
 	 
 	 public ArrayList<Car> getCarList()
