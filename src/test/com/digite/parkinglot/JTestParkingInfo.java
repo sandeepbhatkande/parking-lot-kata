@@ -39,4 +39,20 @@ public class JTestParkingInfo {
         assertEquals(2, w_ParkingInfo1.getSlotNoByCarRegNo("MH11225"));
     }
 
+    @Test
+    public void testGetSlotsNoByCarColor() {
+        ParkingLot w_parkingLot2 = new ParkingLot(10);
+        ParkingInfo w_ParkingInfo2 = new ParkingInfo(w_parkingLot2);
+
+        w_parkingLot2.allocateSlotToParkCar(new Car("MH11221", "White"));
+        w_parkingLot2.allocateSlotToParkCar(new Car("MH11225", "Red"));
+        w_parkingLot2.allocateSlotToParkCar(new Car("MH11222", "White"));
+        w_parkingLot2.allocateSlotToParkCar(new Car("MH11223", "White"));
+
+        ArrayList<Integer> w_regNoList = new ArrayList<Integer>();
+        w_regNoList.add(1);
+        w_regNoList.add(3);
+        w_regNoList.add(4);
+        assertEquals(w_regNoList.toString(), w_ParkingInfo2.getSlotsNoByCarColor("White").toString());
+    }
 }
