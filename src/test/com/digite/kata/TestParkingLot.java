@@ -93,6 +93,31 @@ public class TestParkingLot
         Assertions.assertEquals(0, w_parkLot.getBookedSlotList().size());
     }
 
+    @Test
+    public void testSlotVsCarMapInfo()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+        Assertions.assertEquals(1, w_parkLot.getSLotWiseCarMap().size());
+    }
 
+    @Test
+    public void testColorWiseCarMap()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+        Assertions.assertEquals(1, w_parkLot.getColorWiseCarMap().size());
+    }
+
+    @Test
+    public void testGetCarInfoBySlot()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+       // Assertions.assertEquals(0, w_parkLot.getCarInfoBySlot(1).getRegisterationNumber());
+    }
 
 }

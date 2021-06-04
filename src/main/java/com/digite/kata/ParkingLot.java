@@ -1,13 +1,17 @@
 package com.digite.kata;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class ParkingLot
 {
     private int m_slots;
     private ArrayList<Integer> m_availableList = null;
     private ArrayList<Integer> m_bookedList = null;
+    private HashMap<Integer, Car> m_slotWiseCarInfo = null;
+    private HashMap<String, Car> m_colorWiseCarInfo = null;
 
     ParkingLot(int a_slots)
     {
@@ -26,7 +30,8 @@ public class ParkingLot
             m_availableList.add(i);
         }
         m_bookedList = new ArrayList<Integer>();
-
+        m_slotWiseCarInfo = new HashMap<Integer, Car>();
+        m_colorWiseCarInfo = new HashMap<String, Car>();
     }
 
     public int getTotalSlot()
@@ -53,8 +58,11 @@ public class ParkingLot
             m_availableList.remove(0);
             w_ticket = "Name : " + w_car.getOwner() + ", Parking Slot : " + w_slot + ", Registeration No: "
                     + w_car.getRegNo() + ", Color: " + w_car.getColor() + "";
+
         } else
             w_ticket = "No Slots Available";
+
+
         return  w_ticket;
 
     }
@@ -62,5 +70,15 @@ public class ParkingLot
     public void Leave(Car w_car)
     {
 
+    }
+
+    public HashMap<Integer, Car> getSLotWiseCarMap()
+    {
+        return m_slotWiseCarInfo;
+    }
+
+    public HashMap<String, Car> getColorWiseCarMap()
+    {
+        return  m_colorWiseCarInfo;
     }
 }
