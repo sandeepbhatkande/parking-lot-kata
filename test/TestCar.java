@@ -14,7 +14,7 @@ public class TestCar
     public void cardetails() {
         Car c = new Car("car1","black"  );
         assertTrue("car1".equals(c.getRegistrationNo()));
-        assertTrue("white".equals(c.getColor()));
+        assertTrue("black".equals(c.getColor()));
     }
 
 }

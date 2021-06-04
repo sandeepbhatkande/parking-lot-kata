@@ -63,12 +63,34 @@ public String getRegfromColor(String color){
   }
 
  }
- if (cars=="")
-    cars="car with " + color + "color not found";
+ if (cars==""){
+    cars="car with " + color + "color not found";}else
+   { cars = cars.substring(0, cars.length() - 1);}
  return cars;
 
  // return "";
 }
 
+ public String getSlotNofromColor(String color){
+  Car c;
+  String slotnos="";
+  if (color=="" )
+   return "enter some color";
+  //List<String> reg = new ArrayList<>();
+  for (Map.Entry<Integer, Car> entry : slot_map.entrySet()) {
+   if (entry.getValue().getColor()==color){
+    slotnos+=entry.getKey().toString() +",";//reg.add(entry.getValue().getRegistrationNo());
+   }
+
+  }
+  if (slotnos==""){
+   slotnos="car with " + color + "color not found";}else
+  {
+   slotnos = slotnos.substring(0, slotnos.length() - 1);
+  }
+  return slotnos;
+
+  // return "";
+ }
 
 }

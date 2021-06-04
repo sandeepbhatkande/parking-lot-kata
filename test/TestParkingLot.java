@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestParkingLot {
 
-    ParkingLot slot;
+    static   ParkingLot slot;
 
     @BeforeAll
-    public   void setup() {
+    public  static void setup() {
         slot = new ParkingLot(10);
     }
 
@@ -49,6 +49,18 @@ public class TestParkingLot {
         car=new Car("MH 02 1234", "yellow");
         slot.parkCarandGetSlotNo(car);
         assertEquals("MH 02 123456",slot.getRegfromColor("black"));
+
+    }
+    @Test
+    void TestgetSlotNofromColor() throws Exception {
+        Car car=new Car("MH 02 12345", "white");
+        slot.parkCarandGetSlotNo(car);
+        assertEquals("car with black color not found",slot.getRegfromColor("black"));
+        car = new Car("MH 02 123456", "black");
+        slot.parkCarandGetSlotNo(car);
+        car=new Car("MH 02 1234", "yellow");
+        slot.parkCarandGetSlotNo(car);
+        assertEquals("2",slot.getRegfromColor("black"));
 
     }
 }
