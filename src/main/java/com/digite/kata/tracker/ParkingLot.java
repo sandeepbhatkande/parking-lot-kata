@@ -10,7 +10,7 @@ public class ParkingLot
     }
     
     public int getParkingSlot() {
-        return 0;
+        return parkingSlot;
     }
 
 }
