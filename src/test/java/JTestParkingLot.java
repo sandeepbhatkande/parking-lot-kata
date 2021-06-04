@@ -1,6 +1,5 @@
 
 import static org.junit.Assert.assertEquals;
-import java.util.ArrayList;
 import org.junit.Test;
 import com.digite.kata.Car;
 import com.digite.kata.ParkingLot;
@@ -10,6 +9,7 @@ public class JTestParkingLot {
     @Test
     public void create_parking_lot()
     {
+    	System.out.println("---- TDD create_parking_lot Stated---------");
     	ParkingLot w_ParkingLot = new ParkingLot(6);
     	System.out.println("Created a parking lot with " +w_ParkingLot.getparkingSlotCount() +" slot");
     	assertEquals(w_ParkingLot.getparkingSlotCount(), 6);
@@ -17,8 +17,9 @@ public class JTestParkingLot {
     
     
     @Test
-    public void Add_Car()
+    public void AllocatedSlotforCar()
     {
+    	System.out.println("---- TDD AllocatedSlotforCar Stated---------");
     	ParkingLot w_ParkingLot = new ParkingLot(6);
     	Car w_car1 = new Car("AC-mh-002","White", w_ParkingLot.getNextSlotNumber());
     	assertEquals(w_ParkingLot.addCarInList(w_car1), "Allocated slot number:1");
@@ -26,5 +27,23 @@ public class JTestParkingLot {
     	Car w_car2 = new Car("AC-mh-003","Red", w_ParkingLot.getNextSlotNumber());
     	assertEquals(w_ParkingLot.addCarInList(w_car2), "Allocated slot number:2");
     }
-    
+
+    @Test
+    public void ExceedtheCarSlotCapacity()
+    {
+    	System.out.println("---- TDD ExceedtheCarSlotCapacity Stated---------");
+    	ParkingLot w_ParkingLot = new ParkingLot(3);
+    	
+    	Car w_car1 = new Car("KA-01-P-001","White", w_ParkingLot.getNextSlotNumber());
+    	assertEquals(w_ParkingLot.addCarInList(w_car1), "Allocated slot number:1");
+    	
+    	Car w_car2 = new Car("KA-01-P-002","Red", w_ParkingLot.getNextSlotNumber());
+    	assertEquals(w_ParkingLot.addCarInList(w_car2), "Allocated slot number:2");
+    	
+    	Car w_car3 = new Car("KA-01-P-003","Black", w_ParkingLot.getNextSlotNumber());
+    	assertEquals(w_ParkingLot.addCarInList(w_car3), "Allocated slot number:3");
+    	
+    	Car w_car4 = new Car("KA-01-P-003","Black", w_ParkingLot.getNextSlotNumber());
+    	assertEquals(w_ParkingLot.addCarInList(w_car4), "Sorry, parking lot is full");
+    }    
 }

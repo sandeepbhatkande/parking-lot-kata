@@ -18,7 +18,7 @@ public class ParkingLot
     
     public int getNextSlotNumber()
     {
-    	if(_NextSlotNumber <= _parkingSlot)
+    	if(_NextSlotNumber < _parkingSlot)
     		return ++_NextSlotNumber;
     	else
     		return 0;
@@ -26,9 +26,18 @@ public class ParkingLot
     
     public String addCarInList(Car w_car)
 	 {
-		 _carList.add(w_car);
-		 System.out.println("Allocated slot number:"+ _NextSlotNumber);
-		 return "Allocated slot number:"+ _NextSlotNumber;
+    	if(w_car.getslotNumber() > 0)
+    	{
+    		_carList.add(w_car);
+    		System.out.println("Allocated slot number:"+ _NextSlotNumber);
+    		return "Allocated slot number:"+ _NextSlotNumber;
+    	}
+    	else
+    	{
+    		System.out.println("Sorry, parking lot is full");
+    		return "Sorry, parking lot is full";
+    	}
+		 
 	 }
 	 
 	 public ArrayList<Car> getCarList()
