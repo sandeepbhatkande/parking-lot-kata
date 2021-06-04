@@ -51,4 +51,7 @@ public class ParkingLot {
         return w_deallocationStaus;
     }
 
+    public HashMap<Integer, Car> getSlotAllocationMap () {
+        return this.w_slotAllocationMap;
+    }
 }
