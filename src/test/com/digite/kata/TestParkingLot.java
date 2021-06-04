@@ -19,5 +19,20 @@ public class TestParkingLot
         Assertions.assertEquals(10, w_parkLot.getTotalSlot());
     }
 
+    @Test
+    public void testAvailableSlotListAtIntial()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Assertions.assertEquals(10, w_parkLot.getAvailableSlotList().size());
+    }
+
+    @Test
+    public void testBookedSlotListAtIntial()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Assertions.assertEquals(0, w_parkLot.getAvailableSlotList().size());
+    }
+
+
 
 }

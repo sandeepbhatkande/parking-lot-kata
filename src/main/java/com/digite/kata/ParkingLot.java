@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class ParkingLot
 {
     private int m_slots;
+    private ArrayList<Integer> m_availableList = null;
+    private ArrayList<Integer> m_bookedList = null;
 
     ParkingLot(int a_slots)
     {
@@ -19,4 +21,8 @@ public class ParkingLot
         return m_slots;
     }
 
+    public ArrayList<Integer> getAvailableSlotList()
+    {
+        return m_availableList;
+    }
 }
