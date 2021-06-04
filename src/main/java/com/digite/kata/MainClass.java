@@ -11,12 +11,12 @@ public class MainClass {
             Car c4 = new Car("KA-01-HH-7777", "Red");
             Car c5 = new Car("KA-01-HH-2701", "Blue");
             Car c6 = new Car("KA-01-HH-3141", "Black");
-            slot.parkCar(1, c1);
-            slot.parkCar(2, c2);
-            slot.parkCar(3, c3);
-            slot.parkCar(4, c4);
-            slot.parkCar(5, c5);
-            slot.parkCar(6, c6);
+            slot.parkCar(c1);
+            slot.parkCar(c2);
+            slot.parkCar(c3);
+            slot.parkCar(c4);
+            slot.parkCar(c5);
+            slot.parkCar(c6);
             //status
             slot.getParkingLogStatus();
             //leave 4

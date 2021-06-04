@@ -11,7 +11,8 @@ public class ParkingSlot {
         this.w_parkedCars = new HashMap<Integer, Car>();
     }
 
-    public void parkCar(int parkingLot, Car w_car) throws Exception {
+    public void parkCar(Car w_car) throws Exception {
+        int parkingLot = searchNearestParkingSlot();
         Car existingCar = w_parkedCars.get(parkingLot);
         if (existingCar == null) {
             w_car.setParkingSlot(parkingLot);
@@ -44,5 +45,17 @@ public class ParkingSlot {
             System.out.println("Car with reg no " + car.getRegistrationNumber() + " and color " + car.getColor()
                 + " is parked at position " + parkingSlot);
         }
+    }
+
+    public int searchNearestParkingSlot() {
+        int emptySlot = 0;
+        for (int i = 1; i <= parkingLotCount; i++){
+            Car existingCar = w_parkedCars.get(i);
+            if (existingCar == null) {
+                emptySlot = i;
+                break;
+            }
+        }
+        return emptySlot;
     }
 }

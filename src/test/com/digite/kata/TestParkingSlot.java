@@ -18,7 +18,7 @@ public class TestParkingSlot {
     @Order(1)
     public void testParkFirstCar() throws Exception {
         Car car = new Car("MH 02 123456", "Black");
-        slot.parkCar(1, car);
+        slot.parkCar(car);
         HashMap<Integer, Car> parkedCars = slot.getParkedCars();
         Assertions.assertEquals(1, parkedCars.get(1).getParkingSlot());
     }
@@ -29,7 +29,7 @@ public class TestParkingSlot {
         Car car = new Car("MH 02 123457", "White");
 
         try {
-            slot.parkCar(1, car);
+            slot.parkCar(car);
         } catch (Exception e) {
             Assertions.assertEquals("Slot 1 is already full", e.getMessage());
         }
@@ -52,5 +52,12 @@ public class TestParkingSlot {
         } catch (Exception e) {
             Assertions.assertEquals("Slot is already empty", e.getMessage());
         }
+    }
+
+    @Test
+    @Order(5)
+    public void testSearchNearestParkingSlot() {
+        int w_slot = slot.searchNearestParkingSlot();
+        Assertions.assertEquals(1, w_slot);
     }
 }
