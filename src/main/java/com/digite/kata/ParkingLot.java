@@ -86,6 +86,49 @@ public class ParkingLot
 
     public void Leave(Car w_car)
     {
+        int w_slotToEmpty = 0;
+        //find slot
+        for(int w_slot : m_slotWiseCarInfo.keySet())
+        {
+            if(m_slotWiseCarInfo.get(w_slot).getRegNo().equals(w_car.getRegNo()))
+            {
+                w_slotToEmpty = w_slot;
+                break;
+            }
+        }
+
+
+        if(w_slotToEmpty > 0)
+        {
+            //remove from bookedlists and addtoAvailableList
+            int index = 0;
+            for(int w_slot : m_bookedList)
+            {
+                if(w_slot == w_slotToEmpty)
+                {
+                   m_bookedList.remove(index);
+                   m_availableList.add(w_slotToEmpty);
+                   break;
+                }
+                index++;
+            }
+
+            //remove from maps
+            m_slotWiseCarInfo.remove(w_slotToEmpty);
+            index = 0;
+            ArrayList<String> list = m_colorWiseCarInfo.get(w_car.getColor());
+            for(String w_regNo : list)
+            {
+                if(w_regNo.equals(w_car.getRegNo()))
+                {
+                    break;
+                }
+                index++;
+            }
+            list.remove(index);
+            m_colorWiseCarInfo.put(w_car.getColor(), list);
+        }
+
 
     }
 

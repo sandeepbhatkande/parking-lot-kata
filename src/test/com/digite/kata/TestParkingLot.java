@@ -94,7 +94,7 @@ public class TestParkingLot
     }
 
     @Test
-        public void testSlotVsCarMapInfo()
+    public void testSlotVsCarMapInfo()
     {
 
         ParkingLot w_parkLot = new ParkingLot(10);
