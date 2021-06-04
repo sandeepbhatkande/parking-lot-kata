@@ -54,5 +54,8 @@ public class MaintainSlot {
 	public int getRemainingSlots() {
 		return emptySlotCount;
 	}
-
+	
+	public int getSize() {
+		return max_size;
+	}
 }

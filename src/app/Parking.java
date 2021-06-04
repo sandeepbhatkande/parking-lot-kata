@@ -31,4 +31,12 @@ public class Parking {
 		}
 		return false;
 	}
+	
+	public HashMap<Integer, Car> getMAP() {
+		return parking_map;
+	}
+	
+	public MaintainSlot getSlotInformation() {
+		return slotInformation;
+	}
 }
