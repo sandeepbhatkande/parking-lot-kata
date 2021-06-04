@@ -44,15 +44,16 @@ public class ParkingLot
         return m_bookedList;
     }
 
-    public void park(Car w_car)
+    public String park(Car w_car)
     {
-       int w_slot = m_availableList.size() > 0 ? m_availableList.get(0) : 0;
-       if(w_slot > 0)
-       {
-           m_bookedList.add(w_slot);
-           m_availableList.remove(w_slot-1);
-       }
+        String w_ticket = "";
+        int w_slot = m_availableList.size() > 0 ? m_availableList.get(0) : 0;
+        if (w_slot > 0) {
+            m_bookedList.add(w_slot);
+            m_availableList.remove(w_slot - 1);
 
+        }
+        return  w_ticket;
 
     }
 
