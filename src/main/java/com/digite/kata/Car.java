@@ -5,6 +5,7 @@ public class Car
     private String m_color;
     private String m_regNo;
 
+
     public Car(String a_color, String a_rego)
     {
         this.m_color = a_color;
