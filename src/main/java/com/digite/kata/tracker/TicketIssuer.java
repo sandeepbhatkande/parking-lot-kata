@@ -98,4 +98,19 @@ public class TicketIssuer
 		return w_filteredList;
 	}
 
+	public String getStatus()
+	{
+		String w_status = "";
+		int w_counter = 1;
+		for(Integer slotNo: m_slotVsCarInfo.keySet())
+		{
+			w_status+= + w_counter + ".Slot No: " + slotNo + ",Registeration No: " + m_slotVsCarInfo.get(slotNo).getRegNo() +
+						",Color: " + m_slotVsCarInfo.get(slotNo).getColor()+ "\n";
+			w_counter++;
+		}
+		
+		return w_status;
+		
+	}
+
 }

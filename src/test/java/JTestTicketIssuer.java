@@ -185,5 +185,36 @@ public class JTestTicketIssuer
 	    Assertions.assertEquals(w_expectedSlotNo1, w_slotNoList1);
  
 	}
+    
+    @Test
+    public void getStatus()
+    {
+    	ParkingLot w_parkingLot = new ParkingLot(10);
+	    TicketIssuer w_issuer = new TicketIssuer(w_parkingLot);
+	  
+	    Car w_car1 = new Car("White", "MH-03-9000", "Hitesh Narwani");  
+	    Assertions.assertEquals("Allocated slot number: 1", w_issuer.getAllocatedSlotNo(w_car1));
+	    
+	    Car w_car2 = new Car("Red", "MH-03-9002", "Sandeep Bhatkande");
+	    Assertions.assertEquals("Allocated slot number: 2", w_issuer.getAllocatedSlotNo(w_car2));
+	    
+	    Car w_car3 = new Car("White", "MH-03-9003", "Sakshe Goga");
+	    Assertions.assertEquals("Allocated slot number: 3", w_issuer.getAllocatedSlotNo(w_car3));
+	       
+	    Car w_car4 = new Car("Black", "MH-03-9004", "Amey Patil");
+	    Assertions.assertEquals("Allocated slot number: 4", w_issuer.getAllocatedSlotNo(w_car4));
+	  
+	    Car w_car5 = new Car("Black", "MH-03-9005", "Jishan Shaikh");
+	    Assertions.assertEquals("Allocated slot number: 5", w_issuer.getAllocatedSlotNo(w_car5));
+	    
+	    String w_expectedstatus = "1.Slot No: 1,Registeration No: MH-03-9000,Color: White\n"
+	    				  + "2.Slot No: 2,Registeration No: MH-03-9002,Color: Red\n"
+	    				  + "3.Slot No: 3,Registeration No: MH-03-9003,Color: White\n"
+	    				  + "4.Slot No: 4,Registeration No: MH-03-9004,Color: Black\n"
+	    				  + "5.Slot No: 5,Registeration No: MH-03-9005,Color: Black\n";
+	    
+	    String w_actualStatus =  w_issuer.getStatus();
+	    Assertions.assertEquals(w_expectedstatus, w_actualStatus);
+    }
 		  
 }
