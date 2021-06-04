@@ -43,14 +43,18 @@ public class MainClass {
             System.out.println();
             for (Integer parkingSlot: w_searchdCars.keySet()) {
                 Car car = w_searchdCars.get(parkingSlot);
-                System.out.print(car.getParkingSlot() + ", ");
+                System.out.print(parkingSlot + ", ");
             }
 
             System.out.println();
             try {
-                Car w_searchdCar = slot.searchCarsBasedOnRegNo("KA-01-HH-3141");
-                System.out.println(w_searchdCar.getParkingSlot());
-                w_searchdCar = slot.searchCarsBasedOnRegNo("MH-04-AY-1111");
+                //Car w_searchdCar = slot.searchCarsBasedOnRegNo("KA-01-HH-3141");
+                w_searchdCars = slot.searchCarsBasedOnRegNo("KA-01-HH-3141");
+                for (Integer parkingSlot: w_searchdCars.keySet()) {
+                    Car car = w_searchdCars.get(parkingSlot);
+                    System.out.println(parkingSlot);
+                }
+                w_searchdCars = slot.searchCarsBasedOnRegNo("MH-04-AY-1111");
             }
             catch (Exception e) {
                 System.out.println(e.getMessage());

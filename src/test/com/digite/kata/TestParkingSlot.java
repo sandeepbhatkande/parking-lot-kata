@@ -20,7 +20,9 @@ public class TestParkingSlot {
         Car car = new Car("MH 02 123456", "Black");
         slot.parkCar(car);
         HashMap<Integer, Car> parkedCars = slot.getParkedCars();
-        Assertions.assertEquals(1, parkedCars.get(1).getParkingSlot());
+        for (Integer parkingSlot: parkedCars.keySet()) {
+            Assertions.assertEquals(1, parkingSlot);
+        }
     }
 
     /*
@@ -87,16 +89,18 @@ public class TestParkingSlot {
         HashMap<Integer, Car> w_searchdCars = slot.searchCarsBasedOnColor("White");
         for (Integer parkingSlot: w_searchdCars.keySet()) {
             Car car = w_searchdCars.get(parkingSlot);
-            Assertions.assertEquals(parkingSlot, car.getParkingSlot());
-            Assertions.assertEquals(parkingSlot, car.getParkingSlot());
+            Assertions.assertEquals(parkingSlot, parkingSlot);
+            Assertions.assertEquals(parkingSlot, parkingSlot);
         }
     }
 
     @Test
     @Order(8)
     public void testSlotNoOfCarsBasedOnRegNo() throws Exception {
-        Car w_searchdCar = slot.searchCarsBasedOnRegNo("MH 02 123457");
-        Assertions.assertEquals(1, w_searchdCar.getParkingSlot());
+        HashMap<Integer, Car> w_searchdCar = slot.searchCarsBasedOnRegNo("MH 02 123457");
+        for (Integer parkingSlot: w_searchdCar.keySet()) {
+            Assertions.assertEquals(1, parkingSlot);
+        }
     }
 
     @Test

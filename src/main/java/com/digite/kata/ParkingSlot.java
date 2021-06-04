@@ -15,7 +15,7 @@ public class ParkingSlot {
     public void parkCar(Car w_car) throws Exception {
         int parkingLot = searchNearestParkingSlot();
         if (w_parkedCars.size() <= parkingLotCount && parkingLot != 0) {
-            w_car.setParkingSlot(parkingLot);
+            //w_car.setParkingSlot(parkingLot);
             w_parkedCars.put(parkingLot, w_car);
             System.out.println("Allocated slot number: " + parkingLot);
         }
@@ -70,14 +70,16 @@ public class ParkingSlot {
         return w_searchdCars;
     }
 
-    public Car searchCarsBasedOnRegNo(String RegNo) throws Exception {
-        Car w_searchdCars = null;
+    public HashMap<Integer, Car> searchCarsBasedOnRegNo(String RegNo) throws Exception {
+        //Car w_searchdCars = null;
+        HashMap<Integer, Car> w_searchdCars = new HashMap<Integer, Car>();
         for (Integer parkingSlot: w_parkedCars.keySet()) {
             Car car = w_parkedCars.get(parkingSlot);
             if (RegNo.equals(car.getRegistrationNumber()))
-                w_searchdCars = car;
+                //w_searchdCars = car;
+                w_searchdCars.put(parkingSlot, car);
         }
-        if (w_searchdCars == null)
+        if (w_searchdCars.size() == 0)
             throw new Exception("Not found");
 
         return w_searchdCars;
