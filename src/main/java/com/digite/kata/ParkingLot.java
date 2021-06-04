@@ -1,12 +1,14 @@
 package com.digite.kata;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ParkingLot
 {
  	private int _parkingSlot;
  	int _NextSlotNumber = 0;
  	private ArrayList<Car> _carList = new ArrayList<Car>();
+ 	private ArrayList<Integer> _removeCarSlotID = new ArrayList<Integer>();
  	
     public ParkingLot(int w_slotCount) {
     	_parkingSlot = w_slotCount;
@@ -43,5 +45,14 @@ public class ParkingLot
 	 public ArrayList<Car> getCarList()
 	 {
 		 return _carList;
+	 }
+	 
+	 public String RemoveCar(Car a_car){
+		 
+		 String err = "Slot number "+ a_car.getslotNumber() + " is free";
+		 _removeCarSlotID.add(a_car.getslotNumber());
+		 _carList.remove(a_car);
+		 System.out.println(err);
+		 return err;
 	 }
 }
