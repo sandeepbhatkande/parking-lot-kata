@@ -4,8 +4,7 @@ public class Car
 {
    private String registration_no = "";
    private String color = "";
-   private int slotNo = 1;
-  
+   
    public Car(String a_registerNo, String a_color)
    {
 	   registration_no = a_registerNo;
