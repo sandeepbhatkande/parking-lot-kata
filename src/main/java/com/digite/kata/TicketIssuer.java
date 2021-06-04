@@ -38,9 +38,17 @@ public class TicketIssuer
 
     public String getTicket(Car w_car)
     {
-        int w_availableSlot = m_availableList.get(0);
-        String w_ticket ="Name : "+ w_car.getOwner()+", Parking Slot : "+ m_availableList.get(0) +", Registeration No: "
+        int w_availableSlot = 0;
+
+        if(m_availableList.size() > 0)
+            w_availableSlot = m_availableList.get(0);
+
+        String w_ticket = "";
+        if(w_availableSlot > 0)
+            w_ticket = "Name : "+ w_car.getOwner()+", Parking Slot : "+ m_availableList.get(0) +", Registeration No: "
                 + w_car.getRegNo()+", Color: " + w_car.getColor() + "";
+            else
+                w_ticket = "No Slots Available";
 
         updatelists(w_availableSlot);
 
@@ -52,7 +60,8 @@ public class TicketIssuer
         if(m_bookedList == null)
             m_bookedList = new ArrayList<Integer>();
         m_bookedList.add(w_availableSlot);
-        m_availableList.remove(0);
+        if(m_availableList.size() > 0)
+             m_availableList.remove(0);
         Collections.sort(m_availableList);
     }
 }
