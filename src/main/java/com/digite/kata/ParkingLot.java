@@ -14,6 +14,18 @@ public class ParkingLot
             a_slots = 0;
 
         this.m_slots = a_slots;
+        intializeLists();
+    }
+
+    private void intializeLists()
+    {
+        m_availableList = new ArrayList<Integer>();
+        for(int i=1 ; i <= this.m_slots; i++)
+        {
+            m_availableList.add(i);
+        }
+        m_bookedList = new ArrayList<Integer>();
+
     }
 
     public int getTotalSlot()
