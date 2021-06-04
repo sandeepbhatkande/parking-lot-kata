@@ -1,6 +1,7 @@
 package com.digite.kata;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class ParkingLot
@@ -82,6 +83,7 @@ public class ParkingLot
             w_list.add(w_car.getRegNo());
 
         m_colorWiseCarInfo.put(w_car.getColor(), w_list);
+
     }
 
     public void Leave(Car w_car)
@@ -129,7 +131,7 @@ public class ParkingLot
             m_colorWiseCarInfo.put(w_car.getColor(), list);
         }
 
-
+        Collections.sort(m_availableList);
     }
 
     public HashMap<Integer, Car> getSLotWiseCarMap()
@@ -145,7 +147,14 @@ public class ParkingLot
     public int getSlotNumberByRegisterationNo(String a_regNo)
     {
         int w_slotNo = 0;
-        return 0;
+        for(int w_slot : m_slotWiseCarInfo.keySet())
+        {
+            if(a_regNo.equals(m_slotWiseCarInfo.get(w_slot).getRegNo()))
+            {
+                w_slotNo = w_slot;
+            }
+        }
+        return w_slotNo;
 
     }
 }
