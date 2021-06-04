@@ -8,12 +8,12 @@ public class FirstSlot {
 	
 	private int max_size;
 	private int emptySlotCount;
-	int slotArray[];	
+	boolean slotArray[];	
 	
 	public FirstSlot(int a_maxSize) {
 		max_size = a_maxSize;
 		emptySlotCount = a_maxSize;
-		slotArray = new int[a_maxSize];
+		slotArray = new boolean[a_maxSize];
 	}
 	/** slot numbering from 1 to MAX_SIZE */
 	
