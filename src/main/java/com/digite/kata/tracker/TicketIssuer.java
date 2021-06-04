@@ -53,5 +53,45 @@ public class TicketIssuer
     	Collections.sort(m_availableList);
     	return "Slot number " + a_slotNo + " is free";
     }
+    
+    public ArrayList<String> getFilteredList(String a_type, String a_value, String a_expectedValue) 
+	{
+		ArrayList<String> w_filteredList =  null;
+
+		if(a_type.equals("Color") && a_expectedValue.equals("Registeration No"))
+		{
+			w_filteredList = new ArrayList<String>();
+			for(Integer slotNo: m_slotVsCarInfo.keySet())
+			{
+				if(m_slotVsCarInfo.get(slotNo).getColor().equalsIgnoreCase(a_value))
+				{
+					w_filteredList.add(m_slotVsCarInfo.get(slotNo).getRegNo());
+				}
+			}
+		}
+		else if (a_type.equals("Color") && a_expectedValue.equals("Slots"))
+		{
+			w_filteredList = new ArrayList<String>();
+			for(Integer slotNo: m_slotVsCarInfo.keySet())
+			{
+				if(m_slotVsCarInfo.get(slotNo).getColor().equalsIgnoreCase(a_value))
+				{
+					w_filteredList.add(String.valueOf(slotNo));
+				}
+			}
+		}
+		else if (a_type.equals("RegisterationNo"))
+		{
+			w_filteredList = new ArrayList<String>();
+			for(Integer slotNo: m_slotVsCarInfo.keySet())
+			{
+				if(m_slotVsCarInfo.get(slotNo).getRegNo().equalsIgnoreCase(a_value))
+				{
+					w_filteredList.add(String.valueOf(slotNo));
+				}
+			}
+		}
+		return w_filteredList;
+	}
 
 }
