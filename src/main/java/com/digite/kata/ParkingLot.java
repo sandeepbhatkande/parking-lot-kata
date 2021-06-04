@@ -42,4 +42,10 @@ public class ParkingLot
     {
         return m_bookedList;
     }
+
+    public void park(Car w_car)
+    {
+
+    }
+
 }

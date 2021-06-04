@@ -33,6 +33,24 @@ public class TestParkingLot
         Assertions.assertEquals(0, w_parkLot.getBookedSlotList().size());
     }
 
+    @Test
+    public void TestParkCarInfoAvailableList()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+        Assertions.assertEquals(9, w_parkLot.getAvailableSlotList().size());
+    }
+
+    @Test
+    public void TestParkCarInfoBookedList()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+        Assertions.assertEquals(1, w_parkLot.getBookedSlotList().size());
+    }
+
 
 
 }
