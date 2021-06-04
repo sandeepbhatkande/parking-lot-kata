@@ -14,7 +14,7 @@ public class ParkingLot
         this.parkingSlot = parkingSlot;
         
         m_parkingSlotList = new ArrayList<ParkingSlot>();
-        for (int i = 0; i < parkingSlot; i++)
+        for (int i = 1; i < parkingSlot; i++)
         {
         	m_parkingSlotList.add(new ParkingSlot(i,true));
         }

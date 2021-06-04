@@ -11,10 +11,10 @@ public class JTestTicketIssuer
     public void testTicketIssuer()
     {
         ParkingLot w_parkingLot = new ParkingLot(10);
-        Car w_car = new Car("Red", "MH-03-9000");
-        TicketIssuer w_issuer = new TicketIssuer(w_car, w_parkingLot);
+        Car w_car = new Car("White", "MH-03-9000", "Hitesh Narwani");
+        TicketIssuer w_issuer = new TicketIssuer(w_parkingLot);
         String w_ticket = "Name : Hitesh Narwani, Parking Slot : 1, Registeration No: MH-03-9000, Color: White";
-        Assertions.assertEquals(w_ticket, w_issuer.getTicket());
+        Assertions.assertEquals(w_ticket, w_issuer.getTicket(w_car));
 
     }
 }

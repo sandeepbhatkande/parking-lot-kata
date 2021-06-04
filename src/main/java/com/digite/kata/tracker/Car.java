@@ -10,6 +10,7 @@ public class Car
     {
         this.m_color = a_color;
         this.m_regNo = a_rego;
+        this.m_ownerName = a_ownerName;
     }
 
     public String getColor() {
