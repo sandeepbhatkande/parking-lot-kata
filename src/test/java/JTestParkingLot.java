@@ -10,20 +10,14 @@ public class JTestParkingLot
 	public void parkingLotCreated()
 	{
 		ParkingLot w_parkingLot = new ParkingLot(6);
-		assertEquals(6, w_parkingLot.getParkingSlot());	
+		assertEquals("Created a parking lot with 6 slots", w_parkingLot.getParkingSlot());	
 	}
 	
 	@Test
 	public void parkingLotCreateNegativeInput()
 	{
 		ParkingLot w_parkingLot = new ParkingLot(-1);
-		assertEquals(0, w_parkingLot.getParkingSlot());	
+		assertEquals("Created a parking lot with 0 slots", w_parkingLot.getParkingSlot());	
 	}
 	
-	@Test
-	public void testSlotInfo()
-	{
-		ParkingLot w_parkingLot = new ParkingLot(10);
-		assertEquals(10, w_parkingLot.getSlotsInfo().size());	
-	}
 }
