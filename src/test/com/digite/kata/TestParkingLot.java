@@ -18,4 +18,11 @@ public class TestParkingLot
         ParkingLot w_parkLot = new ParkingLot(10);
         Assertions.assertEquals(10, w_parkLot.getTotalSlot());
     }
+
+    @Test
+    public  void testEachSlotInfo()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Assertions.assertEquals(10, w_parkLot.getAllSlotsInfo().size());
+    }
 }
