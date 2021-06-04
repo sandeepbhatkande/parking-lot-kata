@@ -1,14 +1,16 @@
 package com.digite.parkinglot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ParkingLot {
 
     private static int SLOTS = 0;
-    private static HashMap<Integer, Car> w_slotAllocationMap= new HashMap<Integer, Car>();
+    private static HashMap<Integer, Car> w_slotAllocationMap = null;
 
     public ParkingLot(int a_no_of_slots) {
         this.SLOTS = a_no_of_slots;
+        w_slotAllocationMap= new HashMap<Integer, Car>();
     }
 
     public int getSlots() {
@@ -36,26 +38,17 @@ public class ParkingLot {
         return allocationStatus;
     }
 
-    public String deAllocateSlot (String w_carNo) {
+    public String deAllocateSlot (int w_slotNo) {
         String w_deallocationStaus = "";
-        int w_slotTodeallocate = 0;
 
-        for (Integer slot: w_slotAllocationMap.keySet())
-        {
-            Car car = w_slotAllocationMap.get(slot);
-
-            if (w_carNo == car.getREG_NO()) {
-                w_slotTodeallocate = slot;
-                break;
-            }
-        }
-
-        if (w_slotTodeallocate > 0) {
-            w_deallocationStaus = "Slot " + w_slotTodeallocate + " is available for parking";
+        if (w_slotAllocationMap.containsKey(w_slotNo)) {
+            w_slotAllocationMap.remove(w_slotNo);
+            w_deallocationStaus = "Slot " + w_slotNo + " is available for parking";
         } else {
-            w_deallocationStaus = "Car is not parked";
+            w_deallocationStaus = "Slot is already empty";
         }
 
         return w_deallocationStaus;
     }
+
 }
