@@ -40,4 +40,18 @@ public class ParkingInfo {
         return slot;
     }
 
+    public  ArrayList<Integer> getSlotsNoByCarColor(String color) {
+        ArrayList<Integer> w_slotList = new ArrayList<Integer>();
+        HashMap<Integer, Car> w_slotAllocationMap = parkingLot.getSlotAllocationMap();
+
+        for (Integer slot: w_slotAllocationMap.keySet())
+        {
+            Car car = w_slotAllocationMap.get(slot);
+
+            if (color == car.getCOLOR()) {
+                w_slotList.add(slot);
+            }
+        }
+        return w_slotList;
+    }
 }
