@@ -36,8 +36,19 @@ public class TestParkingLot {
     }
     @Test
     void TestLeaveCar() throws Exception {
-assertEquals("Slot number 6 is free",slot.leaveCar(6));
+        assertEquals("Slot number 6 is free",slot.leaveCar(6));
+    }
 
+    @Test
+    void TestgetRegfromColor() throws Exception {
+        Car car=new Car("MH 02 12345", "white");
+        slot.parkCarandGetSlotNo(car);
+        assertEquals("car with black color not found",slot.getRegfromColor("black"));
+        car = new Car("MH 02 123456", "black");
+        slot.parkCarandGetSlotNo(car);
+        car=new Car("MH 02 1234", "yellow");
+        slot.parkCarandGetSlotNo(car);
+        assertEquals("MH 02 123456",slot.getRegfromColor("black"));
 
     }
 }

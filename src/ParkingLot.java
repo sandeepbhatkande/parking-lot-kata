@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class ParkingLot {
 public static final int MAX_SLOT=10;
@@ -54,7 +51,24 @@ return slotNo;
 
  }
 
+public String getRegfromColor(String color){
+  Car c;
+  String cars="";
+  if (color=="" )
+      return "enter some color";
+ //List<String> reg = new ArrayList<>();
+ for (Map.Entry<Integer, Car> entry : slot_map.entrySet()) {
+  if (entry.getValue().getColor()==color){
+   cars+=entry.getValue().getRegistrationNo().toString() +",";//reg.add(entry.getValue().getRegistrationNo());
+  }
 
+ }
+ if (cars=="")
+    cars="car with " + color + "color not found";
+ return cars;
+
+ // return "";
+}
 
 
 }
