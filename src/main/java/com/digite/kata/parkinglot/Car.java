@@ -6,11 +6,10 @@ public class Car
    private String color = "";
    private int slotNo = 1;
   
-   public Car(String a_registerNo, String a_color, int a_slotNo)
+   public Car(String a_registerNo, String a_color)
    {
 	   registration_no = a_registerNo;
 	   color = a_color;
-	   slotNo = a_slotNo;
    }
    
    public String getColor() 
@@ -22,10 +21,5 @@ public class Car
    {
 	   return registration_no;
    }
-   
-   public int getSlotNo() 
-   {
-	   return slotNo;
-   }
-   
+      
 }

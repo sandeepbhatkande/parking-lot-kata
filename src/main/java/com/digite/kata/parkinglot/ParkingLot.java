@@ -2,6 +2,7 @@ package com.digite.kata.parkinglot;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class ParkingLot 
 {
@@ -9,6 +10,7 @@ public class ParkingLot
 	public int a_nextSlotNumber = 1;
 	ArrayList<Car> carList = new ArrayList<Car>();
 	ArrayList<Integer> nonAllocatedSlots =  new ArrayList<Integer>();
+	HashMap<Integer, Car> w_carsWithSlot = new HashMap<Integer, Car>();
 	
     public ParkingLot(int a_totalSlots) 
     {
@@ -18,6 +20,11 @@ public class ParkingLot
     public int getTotalSlots()
     {
     	return this.a_totalSlots;
+    }
+    
+    public HashMap<Integer, Car> getParkedCars()
+    {
+    	return w_carsWithSlot;
     }
     
     public int getNextSlotNumber()
@@ -33,26 +40,41 @@ public class ParkingLot
     		return 0;
     }
     
-    public String addCarsInList(Car c)
+    
+    public String addCars(Car car)
     {
-    	if (c.getSlotNo() > 0)
+    	int w_slotNo = getNextSlotNumber();
+    	if (w_slotNo > 0)
     	{
-    		carList.add(c);
-    		return "Car with Registration number: " + c.getRegistrationNo() + " " + c.getSlotNo() + "added";
+    		w_carsWithSlot.put(w_slotNo, car);
+    		return "Car with Registration number: " + car.getRegistrationNo() + " " + w_slotNo + "added";
     	}
     	else 
     		return "Sorry, parking lot is full";
+
     }
+    
+    
     
     public ArrayList<Car> getCarList()
     {
-    	return carList;
+    	ArrayList<Car> w_carList = new ArrayList<Car>();
+    	for (Integer w_slot : w_carsWithSlot.keySet())
+    	{
+    		w_carList.add(w_carsWithSlot.get(w_slot));
+    	}
+    	return w_carList;
     }
     
-    public void leaveCar(Car car)
+    public void leaveCar(int slotNo) throws Exception
     {
-    	carList.remove(car);
-    	addToNonAllocatedSlots(car.getSlotNo());
+    	Car car  = w_carsWithSlot.get(slotNo);
+    	if (car != null)
+    		w_carsWithSlot.remove(slotNo);
+    	else 
+    		throw new Exception("Slot is already empty");
+    	
+    	addToNonAllocatedSlots(slotNo);
     }
     
     public void addToNonAllocatedSlots(int a_slotNo)
@@ -68,11 +90,11 @@ public class ParkingLot
     public ArrayList<Car> getCarByColor(String color)
     {
     	ArrayList<Car> carsBasedOnColors = new ArrayList<Car>(); 
-    	for (Car car : carList)
+    	for (Integer slot : w_carsWithSlot.keySet())
     	{
-    		if (car.getColor().equals(color))
+    		if (w_carsWithSlot.get(slot).getColor().equals(color))
     		{
-    			carsBasedOnColors.add(car);
+    			carsBasedOnColors.add(w_carsWithSlot.get(slot));
     		}
     	}
 		return carsBasedOnColors;
@@ -82,11 +104,11 @@ public class ParkingLot
     public Car getCarByRegistrationNo(String registrationNo) throws Exception
     {
     	Car carbyNo = null; 
-    	for (Car car1 : carList)
+    	for (Integer slot : w_carsWithSlot.keySet())
     	{
-    		if (car1.getRegistrationNo().equals(registrationNo))
+    		if (w_carsWithSlot.get(slot).getRegistrationNo().equals(registrationNo))
     		{
-    			carbyNo = car1;
+    			carbyNo = w_carsWithSlot.get(slot);
     			break;
     		}
     	}
@@ -100,11 +122,11 @@ public class ParkingLot
     public ArrayList<Integer> getSlotNumberBasedOnColor(String color)
     { 
     	ArrayList<Integer> w_slots = new ArrayList<Integer>();
-    	for (Car car1 : carList)
+    	for (Integer slot : w_carsWithSlot.keySet())
     	{
-    		if (car1.getColor().equals(color))
+    		if (w_carsWithSlot.get(slot).getColor().equals(color))
     		{
-    			w_slots.add(car1.getSlotNo());
+    			w_slots.add(slot);
     		}
     	}
 		
@@ -114,11 +136,11 @@ public class ParkingLot
     public int getSlotNumberBasedOnNo(String regNo)
     { 
     	int w_slot = 0;
-    	for (Car car1 : carList)
+    	for (Integer slot : w_carsWithSlot.keySet())
     	{
-    		if (car1.getRegistrationNo().equals(regNo))
+    		if (w_carsWithSlot.get(slot).getRegistrationNo().equals(regNo))
     		{
-    			w_slot = car1.getSlotNo();
+    			w_slot = slot;
     			break;
     		}
     	}
