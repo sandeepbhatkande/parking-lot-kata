@@ -1,5 +1,9 @@
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import org.junit.Test;
 import com.digite.kata.Car;
 import com.digite.kata.ParkingLot;
@@ -94,4 +98,31 @@ public class JTestParkingLot {
     	Car w_car6 = new Car("KA-01-P-006","Black", w_ParkingLot.getNextSlotNumber());
     	assertEquals(w_ParkingLot.addCarInList(w_car6), "Allocated slot number:3");
     }
+ 
+    @Test
+    public void getfiltercarListbasedOnColor()
+    {
+    	System.out.println("---- TDD getfiltercarListbasedOnColor Stated---------");
+    	ParkingLot w_ParkingLot = new ParkingLot(3);
+    	
+    	Car w_car1 = new Car("KA-01-P-001","White", w_ParkingLot.getNextSlotNumber());
+    	assertEquals(w_ParkingLot.addCarInList(w_car1), "Allocated slot number:1");
+    	
+    	Car w_car2 = new Car("KA-01-P-002","Black", w_ParkingLot.getNextSlotNumber());
+    	assertEquals(w_ParkingLot.addCarInList(w_car2), "Allocated slot number:2");
+    	
+    	Car w_car3 = new Car("KA-01-P-003","Black", w_ParkingLot.getNextSlotNumber());
+    	assertEquals(w_ParkingLot.addCarInList(w_car3), "Allocated slot number:3");
+    	
+    	ArrayList<Car> w_ExpectedCarList = new ArrayList<Car>();
+    	w_ExpectedCarList.add(w_car2);
+    	w_ExpectedCarList.add(w_car3);
+
+    	ArrayList<Car> w_filteredCarList = w_ParkingLot.getFilterCarList("color", "Black");
+    	
+    	System.out.println("isfilterd :"+ w_ExpectedCarList.equals(w_filteredCarList));
+    	assertEquals(w_ExpectedCarList.equals(w_filteredCarList), true);
+    }
+    
+   
 }
