@@ -203,7 +203,14 @@ public class TestParkingLot
         Car w_car7 = new Car("White","KA-01-P-333", "Liam"); w_parkLot.park(w_car7);
         Car w_car8 = new Car("White","DL-12-AA-9999", "Scott"); w_parkLot.park(w_car8);
 
-        Assertions.assertEquals("Slot No: Car No: Car Color: Car Owner", w_parkLot.getCurrentStatus());
+        String w_status = w_parkLot.getCurrentStatus();
+        Assertions.assertEquals("SlotNo|CarNo|CarColor|CarOwner|\n" +
+                "1|KA-01-HH-1234|White|Peter|\n" +
+                "2|KA-01-HH-9999|White|Olivia|\n" +
+                "3|KA-01-BB-0001|Black|Walter|\n" +
+                "4|KA-01-P-333|White|Liam|\n" +
+                "5|KA-01-HH-2701|Blue|John|\n" +
+                "6|KA-01-HH-3141|Black|Astrid|\n", w_status);
     }
 
 }
