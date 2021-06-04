@@ -2,6 +2,8 @@ package com.parkingapp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ParkingDetailsRepo {
 	
@@ -28,5 +30,14 @@ public class ParkingDetailsRepo {
 		parkedCars.get(slotId).setParked(false);
 		parkedCars.remove(slotId);
 	}
+
+	public List<ParkingDetails> getDetailsByColor(String color) {
+		return repo
+				.stream()
+				.filter(details -> color.equals(details.getCar().getColor()))
+				.collect(Collectors.toList());
+	}
+	
+	
 	
 }
