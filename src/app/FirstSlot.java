@@ -15,22 +15,44 @@ public class FirstSlot {
 		emptySlotCount = a_maxSize;
 		slotArray = new boolean[a_maxSize];
 	}
-	/** slot numbering from 1 to MAX_SIZE */
+	/** slot numbering from 1 to (MAX_SIZE) */
 	
-	public void entry(int slot) {
-		
+	public int entry() {
+		if(emptySlotPresent()) {
+			int slot = returnMin();
+			insertCarInSlot(slot);
+			emptySlotCount--;
+			return slot;
+		}
+		return -1;
+	}
+	
+	private void insertCarInSlot(int slot) {
+		slotArray[slot-1] = true;
 	}
 	
 	public void exit(int slot) {
-		
+		slotArray[slot-1] = false;
+		emptySlotCount++;;
 	}
 	
 	public int returnMin() {
-		return 1;
+		int i;
+		for(i=0;i<max_size;i++) {
+			if(!slotArray[i]) {
+				break;
+			}
+		}
+		return i+1;
 	}
 	
 	public boolean emptySlotPresent() {
-		return true;
+
+		return (emptySlotCount > 0);
+	}
+	
+	public int getRemainingSlots() {
+		return emptySlotCount;
 	}
 
 }
