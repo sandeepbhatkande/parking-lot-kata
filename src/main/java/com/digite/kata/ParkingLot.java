@@ -1,8 +1,6 @@
 package com.digite.kata;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class ParkingLot
@@ -11,7 +9,7 @@ public class ParkingLot
     private ArrayList<Integer> m_availableList = null;
     private ArrayList<Integer> m_bookedList = null;
     private HashMap<Integer, Car> m_slotWiseCarInfo = null;
-    private HashMap<String, Car> m_colorWiseCarInfo = null;
+    private HashMap<String, ArrayList<String>> m_colorWiseCarInfo = null;
 
     ParkingLot(int a_slots)
     {
@@ -31,7 +29,7 @@ public class ParkingLot
         }
         m_bookedList = new ArrayList<Integer>();
         m_slotWiseCarInfo = new HashMap<Integer, Car>();
-        m_colorWiseCarInfo = new HashMap<String, Car>();
+        m_colorWiseCarInfo = new HashMap<String, ArrayList<String>>();
     }
 
     public int getTotalSlot()
@@ -59,12 +57,31 @@ public class ParkingLot
             w_ticket = "Name : " + w_car.getOwner() + ", Parking Slot : " + w_slot + ", Registeration No: "
                     + w_car.getRegNo() + ", Color: " + w_car.getColor() + "";
 
+
+            updateMap(w_slot, w_car);
+
         } else
             w_ticket = "No Slots Available";
 
 
         return  w_ticket;
 
+    }
+
+    private void updateMap(int w_slot, Car w_car)
+    {
+        m_slotWiseCarInfo.put(w_slot, w_car);
+        String w_color = w_car.getColor();
+        ArrayList<String> w_list = new ArrayList<String>();
+        if(m_colorWiseCarInfo.containsKey(w_color))
+        {
+            w_list = m_colorWiseCarInfo.get(w_color);
+            w_list.add(w_car.getRegNo());
+        }
+        else
+            w_list.add(w_car.getRegNo());
+
+        m_colorWiseCarInfo.put(w_car.getColor(), w_list);
     }
 
     public void Leave(Car w_car)
@@ -77,7 +94,7 @@ public class ParkingLot
         return m_slotWiseCarInfo;
     }
 
-    public HashMap<String, Car> getColorWiseCarMap()
+    public HashMap<String, ArrayList<String>> getColorWiseCarMap()
     {
         return  m_colorWiseCarInfo;
     }

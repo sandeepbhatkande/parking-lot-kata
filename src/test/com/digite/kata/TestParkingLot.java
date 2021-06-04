@@ -94,12 +94,16 @@ public class TestParkingLot
     }
 
     @Test
-    public void testSlotVsCarMapInfo()
+        public void testSlotVsCarMapInfo()
     {
+
         ParkingLot w_parkLot = new ParkingLot(10);
         Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
         w_parkLot.park(w_car);
-        Assertions.assertEquals(1, w_parkLot.getSLotWiseCarMap().size());
+        Car w_car2 = new Car("Blue", "MH-02-1234", "Peter");
+        w_parkLot.park(w_car2);
+        Assertions.assertEquals(2, w_parkLot.getSLotWiseCarMap().size());
+        Assertions.assertEquals("Shraddha", w_parkLot.getSLotWiseCarMap().get(1).getOwner());
     }
 
     @Test
@@ -108,7 +112,14 @@ public class TestParkingLot
         ParkingLot w_parkLot = new ParkingLot(10);
         Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
         w_parkLot.park(w_car);
-        Assertions.assertEquals(1, w_parkLot.getColorWiseCarMap().size());
+        Car w_car2 = new Car("Blue", "MH-02-1234", "Peter");
+        w_parkLot.park(w_car2);
+        Car w_car3 = new Car("Red", "MH-02-5678", "Olivia");
+        w_parkLot.park(w_car3);
+        Assertions.assertEquals(2, w_parkLot.getColorWiseCarMap().size());
+        Assertions.assertEquals(2, w_parkLot.getColorWiseCarMap().get("Red").size());
+        Assertions.assertEquals("MH-02-4444", w_parkLot.getColorWiseCarMap().get("Red").get(0));
+        Assertions.assertEquals(1, w_parkLot.getColorWiseCarMap().get("Blue").size());
     }
 
     @Test
