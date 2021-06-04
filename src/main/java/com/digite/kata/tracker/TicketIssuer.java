@@ -24,7 +24,6 @@ public class TicketIssuer
 
     public String getAllocatedSlotNo(Car a_car)
     {
-    	System.out.print(m_availableList);
     	if (m_availableList.isEmpty())
     		return "Sorry, parking lot is full";
     	

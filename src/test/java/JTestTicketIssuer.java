@@ -21,5 +21,26 @@ public class JTestTicketIssuer
         Assertions.assertEquals(w_allocatedNo1, w_issuer.getAllocatedSlotNo(w_car1));
 
     }
+    
+    @Test 
+	public void testExceedsParkingLimit() 
+	{
+		 ParkingLot w_parkingLot = new ParkingLot(3);
+		 TicketIssuer w_issuer = new TicketIssuer(w_parkingLot);
+		  
+		 Car w_car1 = new Car("White", "MH-03-9000", "Hitesh Narwani");  
+	     Assertions.assertEquals("Allocated slot number: 1", w_issuer.getAllocatedSlotNo(w_car1));
+	        
+	     Car w_car2 = new Car("Red", "MH-03-9002", "Sandeep Bhatkande");
+	     Assertions.assertEquals("Allocated slot number: 2", w_issuer.getAllocatedSlotNo(w_car2));
+	        
+	     Car w_car3 = new Car("White", "MH-03-9003", "Amey Patil");
+	     Assertions.assertEquals("Allocated slot number: 3", w_issuer.getAllocatedSlotNo(w_car3));
+		     	
+		 Car w_car4 = new Car("Black", "MH-03-9004", "Sakshe Goja");
+		 Assertions.assertEquals("Sorry, parking lot is full",
+		 w_issuer.getAllocatedSlotNo(w_car4));
+			 
+	 }
 		  
 }
