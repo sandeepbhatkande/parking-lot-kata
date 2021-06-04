@@ -13,6 +13,16 @@ public class ParkingLot
             a_slots = 0;
 
         this.m_slots = a_slots;
+        initializeList();
+    }
+
+    private void initializeList()
+    {
+        m_slotList = new ArrayList<ParkingSlot>();
+        for (int i = 0; i < this.m_slots; i++)
+        {
+            m_slotList.add(new ParkingSlot(i,true));
+        }
     }
 
     public int getTotalSlot()

@@ -24,5 +24,10 @@ public class TestParkingLot
     {
         ParkingLot w_parkLot = new ParkingLot(10);
         Assertions.assertEquals(10, w_parkLot.getAllSlotsInfo().size());
+        for (int i = 0 ; i< 10; i++)
+        {
+            Assertions.assertEquals(true, w_parkLot.getAllSlotsInfo().get(i).getIsAvailable());
+        }
+
     }
 }
