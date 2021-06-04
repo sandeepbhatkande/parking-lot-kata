@@ -8,14 +8,14 @@ public class TestCar
     @Test
     public  void testgetCarColor()
     {
-        Car w_car = new Car("Red", "KA-01-HH-1234");
+        Car w_car = new Car("Red", "KA-01-HH-1234", "Shraddha");
         Assertions.assertEquals("Red", w_car.getColor());
     }
 
     @Test
     public  void testgetCarReg()
     {
-        Car w_car = new Car("Red", "KA-01-HH-1234");
+        Car w_car = new Car("Red", "KA-01-HH-1234", "Shraddha");
         Assertions.assertEquals("KA-01-HH-1234", w_car.getRegNo());
     }
 }

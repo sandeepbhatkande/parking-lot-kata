@@ -20,4 +20,9 @@ public class ParkingSlot
     {
         return m_isAvailable;
     }
+
+    public void SetIsAvailable(boolean a_isAvailable)
+    {
+        this.m_isAvailable = a_isAvailable;
+    }
 }

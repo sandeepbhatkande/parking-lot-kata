@@ -19,7 +19,7 @@ public class ParkingLot
     private void initializeList()
     {
         m_slotList = new ArrayList<ParkingSlot>();
-        for (int i = 0; i < this.m_slots; i++)
+        for (int i = 1; i <= this.m_slots; i++)
         {
             m_slotList.add(new ParkingSlot(i,true));
         }
