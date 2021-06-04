@@ -1,0 +1,7 @@
+package com.digite.parkinglot;
+
+class ColorConstants {
+
+    public static String WHITE = "white";
+
+}
