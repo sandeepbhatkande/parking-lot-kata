@@ -137,6 +137,121 @@ public class JTestParkingLot
         ArrayList<Integer> w_allocatedSlots = new ArrayList<Integer>(); 
         w_allocatedSlots.add(1);
         assertEquals(w_allocatedSlots.toString(), pl.getNonAllocatedSlots().toString());
-      }
-
+     }
+    
+    
+    @Test
+    public void testGetCarByColor()
+    {
+        ParkingLot pl = new ParkingLot(3);
+        pl.getTotalSlots();
+        
+        int slotNo1 = pl.getNextSlotNumber();
+        Car c1 = new Car("KA-01-HH-1234", "White", slotNo1);
+        
+        int slotNo2 = pl.getNextSlotNumber();
+        Car c2 = new Car("KA-01-HH-9999", "White", slotNo2);
+        
+        int slotNo3 = pl.getNextSlotNumber();
+        Car c3 = new Car("KA-01-BB-0001", "Black", slotNo3);
+       
+        pl.addCarsInList(c1);
+        pl.addCarsInList(c2);
+        pl.addCarsInList(c3);
+        
+        ArrayList<Car> w_list =  pl.getCarList();
+        ArrayList<Car> w_carsByColor = new ArrayList<Car>();
+        w_carsByColor = pl.getCarByColor("White");
+        
+        assertEquals("White", w_carsByColor.get(0).getColor());
+        assertEquals("KA-01-HH-1234", w_carsByColor.get(0).getRegistrationNo()); 
+        assertEquals(1, w_carsByColor.get(0).getSlotNo()); 
+        
+        assertEquals("White", w_carsByColor.get(1).getColor());
+        assertEquals("KA-01-HH-9999", w_carsByColor.get(1).getRegistrationNo()); 
+        assertEquals(2, w_carsByColor.get(1).getSlotNo());
+     }
+    
+    
+    @Test
+    public void testGetCarByRegisterNo() throws Exception
+    {
+        ParkingLot pl = new ParkingLot(3);
+        pl.getTotalSlots();
+        
+        int slotNo1 = pl.getNextSlotNumber();
+        Car c1 = new Car("KA-01-HH-1234", "White", slotNo1);
+        
+        int slotNo2 = pl.getNextSlotNumber();
+        Car c2 = new Car("KA-01-HH-9999", "White", slotNo2);
+        
+        int slotNo3 = pl.getNextSlotNumber();
+        Car c3 = new Car("KA-01-BB-0001", "Black", slotNo3);
+       
+        pl.addCarsInList(c1);
+        pl.addCarsInList(c2);
+        pl.addCarsInList(c3);
+        
+        ArrayList<Car> w_list =  pl.getCarList();
+        int slot = pl.getNextSlotNumber();
+        Car car = new Car("KA-01-HH-1234", "White", slot);
+        Car newCar = pl.getCarByRegistrationNo("KA-01-HH-1234");
+        
+        assertEquals(car.getRegistrationNo(), newCar.getRegistrationNo());
+     }
+    
+    @Test
+    public void testGetSlotByColor() throws Exception
+    {
+        ParkingLot pl = new ParkingLot(3);
+        pl.getTotalSlots();
+        
+        int slotNo1 = pl.getNextSlotNumber();
+        Car c1 = new Car("KA-01-HH-1234", "White", slotNo1);
+        
+        int slotNo2 = pl.getNextSlotNumber();
+        Car c2 = new Car("KA-01-HH-9999", "White", slotNo2);
+        
+        int slotNo3 = pl.getNextSlotNumber();
+        Car c3 = new Car("KA-01-BB-0001", "Black", slotNo3);
+       
+        pl.addCarsInList(c1);
+        pl.addCarsInList(c2);
+        pl.addCarsInList(c3);
+        
+        ArrayList<Car> w_list =  pl.getCarList();
+        ArrayList<Integer> w_slots = new ArrayList<Integer>();
+        w_slots.add(1);
+        w_slots.add(2);
+        
+        ArrayList<Integer> w_newSlots = pl.getSlotNumberBasedOnColor("White");
+        
+        assertEquals(w_slots.toString(), w_newSlots.toString());
+     }
+    
+    @Test
+    public void testGetSlotByNo() throws Exception
+    {
+        ParkingLot pl = new ParkingLot(3);
+        pl.getTotalSlots();
+        
+        int slotNo1 = pl.getNextSlotNumber();
+        Car c1 = new Car("KA-01-HH-1234", "White", slotNo1);
+        
+        int slotNo2 = pl.getNextSlotNumber();
+        Car c2 = new Car("KA-01-HH-9999", "White", slotNo2);
+        
+        int slotNo3 = pl.getNextSlotNumber();
+        Car c3 = new Car("KA-01-BB-0001", "Black", slotNo3);
+       
+        pl.addCarsInList(c1);
+        pl.addCarsInList(c2);
+        pl.addCarsInList(c3);
+        
+        ArrayList<Car> w_list =  pl.getCarList();
+        
+        int w_newSlot = pl.getSlotNumberBasedOnNo("KA-01-HH-1234");
+        
+        assertEquals(1, w_newSlot);
+     }
 }
