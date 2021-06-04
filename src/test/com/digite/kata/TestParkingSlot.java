@@ -1,11 +1,10 @@
 package com.digite.kata;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.HashMap;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestParkingSlot {
 
     static ParkingSlot slot;
@@ -16,6 +15,7 @@ public class TestParkingSlot {
     }
 
     @Test
+    @Order(1)
     public void testParkFirstCar() throws Exception {
         Car car = new Car("MH 02 123456", "Black");
         slot.parkCar(1, car);
@@ -24,6 +24,7 @@ public class TestParkingSlot {
     }
 
     @Test
+    @Order(2)
     public void testParkSecondCarAtFullSlot() {
         Car car = new Car("MH 02 123457", "White");
 
@@ -35,17 +36,16 @@ public class TestParkingSlot {
     }
 
     @Test
+    @Order(3)
     public void testLeaveCar() throws Exception {
-        Car car = new Car("MH 02 123457", "White");
-        slot.parkCar(2, car);
-
-        slot.leaveCar(2);
+        slot.leaveCar(1);
         HashMap<Integer, Car> w_parkedCars = slot.getParkedCars();
         slot.getParkingLogStatus();
-        Assertions.assertTrue(w_parkedCars.containsKey(2));
+        Assertions.assertTrue(!w_parkedCars.containsKey(1));
     }
 
     @Test
+    @Order(4)
     public void testLeaveCarWhenSlotIsEmpty() {
         try {
             slot.leaveCar(1);
