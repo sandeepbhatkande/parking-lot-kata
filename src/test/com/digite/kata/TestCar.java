@@ -16,7 +16,7 @@ public class TestCar
     public  void testgetCarReg()
     {
         Car w_car = new Car("Red", "KA-01-HH-1234");
-        Assertions.assertEquals("KA-01-HH-1234", w_car.getColor());
+        Assertions.assertEquals("KA-01-HH-1234", w_car.getRegNo());
     }
 }
 
