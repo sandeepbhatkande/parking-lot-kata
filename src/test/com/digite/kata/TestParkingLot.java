@@ -123,12 +123,13 @@ public class TestParkingLot
     }
 
     @Test
-    public void testGetCarInfoBySlot()
+    public void testSlotNumberByRegisterationNumber()
     {
         ParkingLot w_parkLot = new ParkingLot(10);
         Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
         w_parkLot.park(w_car);
-       // Assertions.assertEquals(0, w_parkLot.getCarInfoBySlot(1).getRegisterationNumber());
+
+        Assertions.assertEquals(1, w_parkLot.getSlotNumberByRegisterationNo("MH-02-4444"));
     }
 
 }

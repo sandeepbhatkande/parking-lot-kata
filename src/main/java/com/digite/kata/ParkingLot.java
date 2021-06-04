@@ -141,4 +141,11 @@ public class ParkingLot
     {
         return  m_colorWiseCarInfo;
     }
+
+    public int getSlotNumberByRegisterationNo(String a_regNo)
+    {
+        int w_slotNo = 0;
+        return 0;
+
+    }
 }
