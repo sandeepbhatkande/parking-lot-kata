@@ -6,6 +6,8 @@ public class ParkingLot
 
     public ParkingLot(int parkingSlot) 
     {
+    	if (parkingSlot < 0)
+    		parkingSlot = 0;
         this.parkingSlot = parkingSlot;
     }
     
