@@ -55,8 +55,21 @@ public class TestParkingLot
     public void TestMessageAfterCarIsParked()
     {
         ParkingLot w_parkLot = new ParkingLot(10);
-        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        Car w_car = new Car("Red", "MH-03-9000", "Shraddha");
         Assertions.assertEquals("Name : Shraddha, Parking Slot : 1, Registeration No: MH-03-9000, Color: Red",  w_parkLot.park(w_car));
+    }
+
+    @Test
+    public void TestMessageAfterNoParked()
+    {
+        ParkingLot w_parkLot = new ParkingLot(2);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+        Car w_car2 = new Car("Blue", "MH-02-4444", "ABC");
+        w_parkLot.park(w_car2);
+        Car w_car3 = new Car("Blue", "MH-02-4444", "PQR");
+
+        Assertions.assertEquals("No Slots Available",  w_parkLot.park(w_car3));
     }
 
 

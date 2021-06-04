@@ -50,9 +50,11 @@ public class ParkingLot
         int w_slot = m_availableList.size() > 0 ? m_availableList.get(0) : 0;
         if (w_slot > 0) {
             m_bookedList.add(w_slot);
-            m_availableList.remove(w_slot - 1);
-
-        }
+            m_availableList.remove(0);
+            w_ticket = "Name : " + w_car.getOwner() + ", Parking Slot : " + w_slot + ", Registeration No: "
+                    + w_car.getRegNo() + ", Color: " + w_car.getColor() + "";
+        } else
+            w_ticket = "No Slots Available";
         return  w_ticket;
 
     }
