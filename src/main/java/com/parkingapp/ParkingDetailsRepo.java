@@ -37,7 +37,21 @@ public class ParkingDetailsRepo {
 				.filter(details -> color.equals(details.getCar().getColor()))
 				.collect(Collectors.toList());
 	}
-	
-	
-	
+
+	public String getSlotIdByRegistrationNumber(String registrationNumber) {
+		for(int slot  : parkedCars.keySet()) {
+			if(parkedCars.get(slot).getCar().getRegistrationNumber().equals(registrationNumber))
+				return String.valueOf(slot);
+		}
+		return "Not found";
+	}
+
+	public ArrayList<Integer> getSlotsByColors(String color) {
+		ArrayList<Integer> slotIds = new ArrayList<>();
+		for(int slot  : parkedCars.keySet()) {
+			if(parkedCars.get(slot).getCar().getColor().equals(color))
+				slotIds.add(slot);
+		}
+		return slotIds;
+	}
 }
