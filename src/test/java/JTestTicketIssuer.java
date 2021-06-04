@@ -151,7 +151,6 @@ public class JTestTicketIssuer
  
 	}
     
-    
     @Test 
 	public void testGetSlotNoForRegisterationNo() 
 	{
@@ -178,6 +177,12 @@ public class JTestTicketIssuer
 	    
 	    ArrayList<String> w_slotNoList = w_issuer.getFilteredList("RegisterationNo", "MH-03-9004", null);
 	    Assertions.assertEquals(w_expectedSlotNo, w_slotNoList);
+	    
+	    ArrayList<String> w_expectedSlotNo1 = new ArrayList<String>();
+	    w_expectedSlotNo1.add("Not Found");
+	    
+	    ArrayList<String> w_slotNoList1 = w_issuer.getFilteredList("RegisterationNo", "MH-03-9006", null);
+	    Assertions.assertEquals(w_expectedSlotNo1, w_slotNoList1);
  
 	}
 		  

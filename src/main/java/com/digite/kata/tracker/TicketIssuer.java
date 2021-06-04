@@ -91,6 +91,10 @@ public class TicketIssuer
 				}
 			}
 		}
+		
+		if (w_filteredList.isEmpty())
+			w_filteredList.add("Not Found");
+		
 		return w_filteredList;
 	}
 
