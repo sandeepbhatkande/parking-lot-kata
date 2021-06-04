@@ -11,14 +11,14 @@ public class testMinSlot {
 	
 	@Test
 	public void testFirstSlot() {
-		FirstSlot w_firstSlot = new FirstSlot(10);
+		MaintainSlot w_firstSlot = new MaintainSlot(10);
 		w_firstSlot.entry();
 		assertEquals(w_firstSlot.returnMin(), 2);
 	}
 	
 	@Test
 	public void testEmptyProperty() {
-		FirstSlot w_firstSlot = new FirstSlot(10);
+		MaintainSlot w_firstSlot = new MaintainSlot(10);
 		for(int i=0;i < 10;i++)
 		{
 			assertTrue(w_firstSlot.emptySlotPresent());
@@ -30,7 +30,7 @@ public class testMinSlot {
 	
 	@Test
 	public void testRandomEntryExit() {
-		FirstSlot w_firstSlot = new FirstSlot(10);
+		MaintainSlot w_firstSlot = new MaintainSlot(10);
 		assertEquals(w_firstSlot.entry(), 1);
 		assertEquals(w_firstSlot.entry(), 2);
 		assertEquals(w_firstSlot.entry(), 3);

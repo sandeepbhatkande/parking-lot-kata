@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 
 
-public class FirstSlot {
+public class MaintainSlot {
 	
 	private int max_size;
 	private int emptySlotCount;
 	boolean slotArray[];	
 	
-	public FirstSlot(int a_maxSize) {
+	public MaintainSlot(int a_maxSize) {
 		max_size = a_maxSize;
 		emptySlotCount = a_maxSize;
 		slotArray = new boolean[a_maxSize];
