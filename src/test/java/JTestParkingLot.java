@@ -123,6 +123,28 @@ public class JTestParkingLot {
     	System.out.println("isfilterd :"+ w_ExpectedCarList.equals(w_filteredCarList));
     	assertEquals(w_ExpectedCarList.equals(w_filteredCarList), true);
     }
-    
-   
+ 
+	 @Test
+	    public void getfiltercarListbasedOnRegNum()
+	    {
+	    	System.out.println("---- TDD getfiltercarListbasedOnRegNum Stated---------");
+	    	ParkingLot w_ParkingLot = new ParkingLot(3);
+	    	
+	    	Car w_car1 = new Car("KA-01-P-001","White", w_ParkingLot.getNextSlotNumber());
+	    	assertEquals(w_ParkingLot.addCarInList(w_car1), "Allocated slot number:1");
+	    	
+	    	Car w_car2 = new Car("KA-01-P-002","Black", w_ParkingLot.getNextSlotNumber());
+	    	assertEquals(w_ParkingLot.addCarInList(w_car2), "Allocated slot number:2");
+	    	
+	    	Car w_car3 = new Car("KA-01-P-003","Black", w_ParkingLot.getNextSlotNumber());
+	    	assertEquals(w_ParkingLot.addCarInList(w_car3), "Allocated slot number:3");
+	    	
+	    	ArrayList<Car> w_ExpectedCarList = new ArrayList<Car>();
+	    	w_ExpectedCarList.add(w_car3);
+
+	    	ArrayList<Car> w_filteredCarList = w_ParkingLot.getFilterCarList("regNum", "KA-01-P-003");
+	    	
+	    	System.out.println("isfilterd :"+ w_ExpectedCarList.equals(w_filteredCarList));
+	    	assertEquals(w_ExpectedCarList.equals(w_filteredCarList), true);
+	    }
 }

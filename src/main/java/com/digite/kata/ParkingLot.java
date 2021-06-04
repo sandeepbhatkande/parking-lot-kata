@@ -79,7 +79,7 @@ public class ParkingLot
 		 else if (Type.equals("regNum"))
 		 {
 			 w_filteredCarList = (ArrayList<Car>) _carList.stream()
-		        	    .filter(obj -> obj.getcolor() == value).collect(Collectors.toList());
+		        	    .filter(obj -> obj.getRegiNumber() == value).collect(Collectors.toList());
 		 }
 		 
 		 return w_filteredCarList; 
