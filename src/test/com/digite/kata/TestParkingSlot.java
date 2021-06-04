@@ -60,4 +60,21 @@ public class TestParkingSlot {
         int w_slot = slot.searchNearestParkingSlot();
         Assertions.assertEquals(1, w_slot);
     }
+
+    @Test
+    @Order(6)
+    public void testRegNoOfCarsBasedOnColor() throws Exception {
+        Car car1 = new Car("MH 02 123457", "White");
+        slot.parkCar(car1);
+        Car car2 = new Car("MH 02 123458", "White");
+        slot.parkCar(car2);
+        Car car3 = new Car("MH 02 123459", "Black");
+        slot.parkCar(car3);
+
+        HashMap<Integer, Car> w_searchdCars = slot.searchCarsBasedOnColor("White");
+        for (Integer parkingSlot: w_searchdCars.keySet()) {
+            Car car = w_searchdCars.get(parkingSlot);
+            Assertions.assertEquals("White", car.getColor());
+        }
+    }
 }

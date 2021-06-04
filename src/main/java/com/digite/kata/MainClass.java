@@ -1,5 +1,7 @@
 package com.digite.kata;
 
+import java.util.HashMap;
+
 public class MainClass {
     public static void main(String[] args) {
         try {
@@ -22,7 +24,17 @@ public class MainClass {
             //leave 4
             slot.leaveCar(4);
             //status
-            slot.getParkingLogStatus();
+            //slot.getParkingLogStatus();
+            //
+            Car c7 = new Car("KA-01-P-3333", "White");
+            Car c8 = new Car("DL-12-AA-9999", "White");
+            slot.parkCar(c7);
+            slot.parkCar(c8);
+            HashMap<Integer, Car> w_searchdCars = slot.searchCarsBasedOnColor("White");
+            for (Integer parkingSlot: w_searchdCars.keySet()) {
+                Car car = w_searchdCars.get(parkingSlot);
+                System.out.print(car.getRegistrationNumber() + ", ");
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

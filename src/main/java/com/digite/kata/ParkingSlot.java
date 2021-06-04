@@ -9,17 +9,25 @@ public class ParkingSlot {
     public ParkingSlot(int parkingLotCount) {
         this.parkingLotCount = parkingLotCount;
         this.w_parkedCars = new HashMap<Integer, Car>();
+        System.out.println("Created a parking lot with " + parkingLotCount + " slots");
     }
 
     public void parkCar(Car w_car) throws Exception {
         int parkingLot = searchNearestParkingSlot();
         Car existingCar = w_parkedCars.get(parkingLot);
-        if (existingCar == null) {
-            w_car.setParkingSlot(parkingLot);
-            w_parkedCars.put(parkingLot, w_car);
+        if (w_parkedCars.size() <= parkingLotCount && parkingLot != 0) {
+            if (existingCar == null) {
+                w_car.setParkingSlot(parkingLot);
+                w_parkedCars.put(parkingLot, w_car);
+                System.out.println("Allocated slot number: " + parkingLot);
+            } else {
+                throw new Exception("Slot " + parkingLot + " is already full");
+            }
         }
         else
-            throw new Exception("Slot " + parkingLot + " is already full");
+        {
+            System.out.println("Sorry, parking lot is full");
+        }
     }
 
     public HashMap<Integer, Car> getParkedCars() {
@@ -30,8 +38,7 @@ public class ParkingSlot {
         Car existingCar = w_parkedCars.get(parkingLot);
         if (existingCar != null) {
             w_parkedCars.remove(parkingLot);
-            System.out.println("Car with reg no " + existingCar.getRegistrationNumber() + " and color " + existingCar.getColor()
-                    + " is left position " + parkingLot);
+            System.out.println("Slot number " + parkingLot + " is free");
 
         }
         else
@@ -39,11 +46,11 @@ public class ParkingSlot {
     }
     public void getParkingLogStatus()
     {
+        System.out.println("Slot No.    Registration No     Colour");
         for (Integer parkingSlot: w_parkedCars.keySet())
         {
             Car car = w_parkedCars.get(parkingSlot);
-            System.out.println("Car with reg no " + car.getRegistrationNumber() + " and color " + car.getColor()
-                + " is parked at position " + parkingSlot);
+            System.out.println(parkingSlot + "           " + car.getRegistrationNumber() + "       " + car.getColor());
         }
     }
 
@@ -57,5 +64,15 @@ public class ParkingSlot {
             }
         }
         return emptySlot;
+    }
+
+    public HashMap<Integer, Car> searchCarsBasedOnColor(String color) {
+        HashMap<Integer, Car> w_searchdCars = new HashMap<Integer, Car>();
+        for (Integer parkingSlot: w_parkedCars.keySet()) {
+            Car car = w_parkedCars.get(parkingSlot);
+            if (color.equals(car.getColor()))
+                w_searchdCars.put(parkingSlot, car);
+        }
+        return w_searchdCars;
     }
 }
