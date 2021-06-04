@@ -19,4 +19,11 @@ public class JTestParkingLot
 		ParkingLot w_parkingLot = new ParkingLot(-1);
 		assertEquals(0, w_parkingLot.getParkingSlot());	
 	}
+	
+	@Test
+	public void testSlotInfo()
+	{
+		ParkingLot w_parkingLot = new ParkingLot(10);
+		assertEquals(10, w_parkingLot.getSlotsInfo().size());	
+	}
 }
