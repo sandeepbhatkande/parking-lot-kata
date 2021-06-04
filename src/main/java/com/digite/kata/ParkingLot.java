@@ -116,7 +116,7 @@ public class ParkingLot
             //remove from maps
             m_slotWiseCarInfo.remove(w_slotToEmpty);
             index = 0;
-            ArrayList<String> list = m_colorWiseCarInfo.get(w_car.getColor());
+            ArrayList<String> list = getCarListOfSameColor(w_car.getColor());
             for(String w_regNo : list)
             {
                 if(w_regNo.equals(w_car.getRegNo()))
@@ -154,5 +154,14 @@ public class ParkingLot
         }
         return w_slotNo;
 
+    }
+
+    public ArrayList<String> getCarListOfSameColor(String a_color)
+    {
+        ArrayList<String> w_list = new ArrayList<String>();
+        if(m_colorWiseCarInfo.containsKey(a_color))
+            w_list = m_colorWiseCarInfo.get(a_color);
+
+        return w_list;
     }
 }
