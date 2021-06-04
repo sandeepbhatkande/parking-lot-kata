@@ -36,7 +36,10 @@ public class TestParkingLot {
     }
     @Test
     void TestLeaveCar() throws Exception {
-        assertEquals("Slot number 6 is free",slot.leaveCar(6));
+        Car car = new Car("MH 02 123456", "Black");
+        int no=slot.parkCarandGetSlotNo( car);
+        slot.leaveCar(no);
+        assertEquals("Slot number " + no + " is free",slot.leaveCar(no));
     }
 
     @Test
