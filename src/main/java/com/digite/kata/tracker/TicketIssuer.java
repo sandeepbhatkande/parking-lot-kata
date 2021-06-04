@@ -8,6 +8,7 @@ public class TicketIssuer
 {
     private ArrayList<Integer> m_availableList = null;
     private ArrayList<Integer> m_bookedList = null;
+    private HashMap<Integer, Car> m_slotVsCarInfo =  new HashMap<Integer, Car>();
 
     public TicketIssuer(ParkingLot w_parkingLot)
     {
@@ -21,23 +22,28 @@ public class TicketIssuer
 
     }
 
-    public String getTicket(Car w_car)
+    public String getAllocatedSlotNo(Car a_car)
     {
+    	System.out.print(m_availableList);
+    	if (m_availableList.isEmpty())
+    		return "Sorry, parking lot is full";
+    	
         int w_availableSlot = m_availableList.get(0);
-        String w_ticket ="Name : "+ w_car.getOwnerName()+", Parking Slot : "+ m_availableList.get(0) +", Registeration No: "
-                + w_car.getRegNo()+", Color: " + w_car.getColor() + "";
-
+        String w_AllocatedSlotNo = "Allocated slot number: " + w_availableSlot;
         updatelists(w_availableSlot);
+        m_slotVsCarInfo.put(w_availableSlot, a_car);
 
-        return w_ticket;
+        return w_AllocatedSlotNo;
     }
+    
 
     private void updatelists(int w_availableSlot)
     {
         if(m_bookedList == null)
             m_bookedList = new ArrayList<Integer>();
         m_bookedList.add(w_availableSlot);
-        m_availableList.remove(w_availableSlot);
+        m_availableList.remove(0);
         Collections.sort(m_availableList);
     }
+
 }
