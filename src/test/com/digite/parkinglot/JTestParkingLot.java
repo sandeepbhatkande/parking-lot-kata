@@ -53,6 +53,16 @@ public class JTestParkingLot {
     }
 
     @Test
+    public void testDeAllocateSlotOfParkedCar_deallocateAndReallocateSameSlot() {
+        ParkingLot w_parkingLotForDeallocate3 = new ParkingLot(10);
+        Car w_car = new Car("MH11211", "White");
+        w_parkingLotForDeallocate3.allocateSlotToParkCar(w_car);
+        assertEquals("Slot 1 is available for parking", w_parkingLotForDeallocate3.deAllocateSlot(1));
+        //Allocate same slot
+        assertEquals("Allocated slot 1 to MH11211", w_parkingLotForDeallocate3.allocateSlotToParkCar(w_car));
+    }
+
+    @Test
     public void testGetStatus() {
         ParkingLot w_parkingLot4 = new ParkingLot(10);
         Car w_car = new Car("MH11211", "White");
