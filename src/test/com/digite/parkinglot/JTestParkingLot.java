@@ -52,4 +52,12 @@ public class JTestParkingLot {
         assertEquals("Slot is already empty", w_parkingLotForDeallocate2.deAllocateSlot(2));
     }
 
+    @Test
+    public void testGetStatus() {
+        ParkingLot w_parkingLot4 = new ParkingLot(10);
+        Car w_car = new Car("MH11211", "White");
+        w_parkingLot4.allocateSlotToParkCar(w_car);
+        assertEquals("Remaining slots are: 9", w_parkingLot4.getRemainingSlotStatus());
+    }
+
 }

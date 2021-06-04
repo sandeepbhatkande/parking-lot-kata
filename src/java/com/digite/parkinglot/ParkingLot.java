@@ -7,9 +7,11 @@ public class ParkingLot {
 
     private static int SLOTS = 0;
     private static HashMap<Integer, Car> w_slotAllocationMap = null;
+    private static int BOOKED_SLOTS = 0;
 
     public ParkingLot(int a_no_of_slots) {
         this.SLOTS = a_no_of_slots;
+        this.BOOKED_SLOTS = 0;
         w_slotAllocationMap= new HashMap<Integer, Car>();
     }
 
@@ -25,6 +27,7 @@ public class ParkingLot {
             if (!w_slotAllocationMap.containsKey(i)){
                 w_slotAllocationMap.put(i, a_car);
                 allocatedSlot = i;
+                BOOKED_SLOTS++;
                 break;
             }
         }
@@ -43,6 +46,7 @@ public class ParkingLot {
 
         if (w_slotAllocationMap.containsKey(w_slotNo)) {
             w_slotAllocationMap.remove(w_slotNo);
+            BOOKED_SLOTS--;
             w_deallocationStaus = "Slot " + w_slotNo + " is available for parking";
         } else {
             w_deallocationStaus = "Slot is already empty";
@@ -53,5 +57,9 @@ public class ParkingLot {
 
     public HashMap<Integer, Car> getSlotAllocationMap () {
         return this.w_slotAllocationMap;
+    }
+
+    public String getRemainingSlotStatus() {
+        return "Remaining slots are: " + (this.SLOTS - this.BOOKED_SLOTS);
     }
 }
