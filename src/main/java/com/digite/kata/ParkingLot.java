@@ -1,6 +1,7 @@
 package com.digite.kata;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ParkingLot
 {
@@ -45,6 +46,13 @@ public class ParkingLot
 
     public void park(Car w_car)
     {
+       int w_slot = m_availableList.size() > 0 ? m_availableList.get(0) : 0;
+       if(w_slot > 0)
+       {
+           m_bookedList.add(w_slot);
+           m_availableList.remove(w_slot-1);
+       }
+
 
     }
 
