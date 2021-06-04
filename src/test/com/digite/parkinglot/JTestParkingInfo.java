@@ -24,6 +24,10 @@ public class JTestParkingInfo {
         w_regNoList.add("MH11223");
 
         assertEquals(w_regNoList.toString(), w_ParkingInfo.getRegNosByCarColor("White").toString());
+
+        // car with no color
+        w_regNoList = new ArrayList<String>();
+        assertEquals(w_regNoList.toString(), w_ParkingInfo.getRegNosByCarColor("Pink").toString());
     }
 
     @Test
@@ -37,6 +41,9 @@ public class JTestParkingInfo {
         w_parkingLot1.allocateSlotToParkCar(new Car("MH11223", "White"));
 
         assertEquals(2, w_ParkingInfo1.getSlotNoByCarRegNo("MH11225"));
+
+        //car with no Reg No
+        assertEquals(0, w_ParkingInfo1.getSlotNoByCarRegNo("MH1122500"));
     }
 
     @Test
@@ -54,5 +61,9 @@ public class JTestParkingInfo {
         w_regNoList.add(3);
         w_regNoList.add(4);
         assertEquals(w_regNoList.toString(), w_ParkingInfo2.getSlotsNoByCarColor("White").toString());
+
+        //car with no color, so no slots
+        w_regNoList = new ArrayList<Integer>();
+        assertEquals(w_regNoList.toString(), w_ParkingInfo2.getSlotsNoByCarColor("Pink").toString());
     }
 }
