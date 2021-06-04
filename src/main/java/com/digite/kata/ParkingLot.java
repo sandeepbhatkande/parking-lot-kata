@@ -59,4 +59,8 @@ public class ParkingLot
 
     }
 
+    public void Leave(Car w_car)
+    {
+
+    }
 }

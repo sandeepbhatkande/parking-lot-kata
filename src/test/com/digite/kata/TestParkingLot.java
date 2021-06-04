@@ -73,6 +73,26 @@ public class TestParkingLot
     }
 
 
+    @Test
+    public void TestLeftCarInfoAvailableList()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+        w_parkLot.Leave(w_car);
+        Assertions.assertEquals(10, w_parkLot.getAvailableSlotList().size());
+    }
+
+    @Test
+    public void TestLeftCarInfoBookedList()
+    {
+        ParkingLot w_parkLot = new ParkingLot(10);
+        Car w_car = new Car("Red", "MH-02-4444", "Shraddha");
+        w_parkLot.park(w_car);
+        w_parkLot.Leave(w_car);
+        Assertions.assertEquals(0, w_parkLot.getBookedSlotList().size());
+    }
+
 
 
 }
