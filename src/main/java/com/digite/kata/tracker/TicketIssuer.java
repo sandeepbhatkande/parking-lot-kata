@@ -44,5 +44,14 @@ public class TicketIssuer
         m_availableList.remove(0);
         Collections.sort(m_availableList);
     }
+    
+    public String leaveCar(int a_slotNo)
+    {
+    	m_slotVsCarInfo.remove(a_slotNo);
+    	m_bookedList.remove(m_bookedList.indexOf(a_slotNo));
+    	m_availableList.add(a_slotNo);
+    	Collections.sort(m_availableList);
+    	return "Slot number " + a_slotNo + " is free";
+    }
 
 }
