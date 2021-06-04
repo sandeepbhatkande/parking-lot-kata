@@ -15,16 +15,16 @@ public class Car
     }
 
     public String getColor() {
-        return null;
+        return m_color;
     }
 
     public String getRegNo() {
-        return null;
+        return m_regNo;
     }
 
     public String getOwner()
     {
-        return  null;
+        return  m_owner;
     }
 
 }
