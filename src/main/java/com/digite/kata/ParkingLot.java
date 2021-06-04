@@ -88,8 +88,7 @@ public class ParkingLot
 
     public void Leave(Car w_car)
     {
-        int w_slotToEmpty = 0;
-        //find slot
+        int w_slotToEmpty = getSlotNumberByRegisterationNo(w_car.getRegNo());
         for(int w_slot : m_slotWiseCarInfo.keySet())
         {
             if(m_slotWiseCarInfo.get(w_slot).getRegNo().equals(w_car.getRegNo()))
@@ -98,7 +97,6 @@ public class ParkingLot
                 break;
             }
         }
-
 
         if(w_slotToEmpty > 0)
         {
