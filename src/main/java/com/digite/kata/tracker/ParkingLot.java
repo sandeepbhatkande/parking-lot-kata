@@ -1,31 +1,126 @@
 package com.digite.kata.tracker;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class ParkingLot 
 {
-	private int parkingSlot;
-	private ArrayList<ParkingSlot> m_parkingSlotList = null;
+	private int m_parkingSlot;
+	private ArrayList<Integer> m_availableList = null;
+    private ArrayList<Integer> m_bookedList = null;
+    private HashMap<Integer, Car> m_slotVsCarInfo =  new HashMap<Integer, Car>();
 	
     public ParkingLot(int parkingSlot) 
     {
     	if (parkingSlot < 0)
     		parkingSlot = 0;
-        this.parkingSlot = parkingSlot;
+        this.m_parkingSlot = parkingSlot;
         
-        m_parkingSlotList = new ArrayList<ParkingSlot>();
-        for (int i = 1; i <= parkingSlot; i++)
+        if (m_availableList == null)
         {
-        	m_parkingSlotList.add(new ParkingSlot(i,true));
+            m_availableList = new ArrayList<Integer>();
+            for (int i = 1; i <= parkingSlot; i++)
+            {
+            	m_availableList.add(i);
+            }
         }
-    }
-    
-    public String getParkingSlot() {
-        return "Created a parking lot with " + parkingSlot + " slots";
-    }
-    
-    public ArrayList<ParkingSlot> getSlotsInfo() {
-    	return m_parkingSlotList;
-    }
 
+    }
+    
+    public String getParkingSlot()
+    {
+        return "Created a parking lot with " + m_parkingSlot + " slots";
+    }
+    
+    public String getAllocatedSlotNo(Car a_car)
+    {
+    	if (m_availableList.isEmpty())
+    		return "Sorry, parking lot is full";
+    	
+        int w_availableSlot = m_availableList.get(0);
+        String w_AllocatedSlotNo = "Allocated slot number: " + w_availableSlot;
+        updatelists(w_availableSlot);
+        m_slotVsCarInfo.put(w_availableSlot, a_car);
+
+        return w_AllocatedSlotNo;
+    }
+    
+
+    private void updatelists(int w_availableSlot)
+    {
+        if(m_bookedList == null)
+            m_bookedList = new ArrayList<Integer>();
+        m_bookedList.add(w_availableSlot);
+        m_availableList.remove(0);
+        Collections.sort(m_availableList);
+    }
+    
+    public String leaveCar(int a_slotNo)
+    {
+    	m_slotVsCarInfo.remove(a_slotNo);
+    	m_bookedList.remove(m_bookedList.indexOf(a_slotNo));
+    	m_availableList.add(a_slotNo);
+    	Collections.sort(m_availableList);
+    	return "Slot number " + a_slotNo + " is free";
+    }
+    
+    public ArrayList<String> getFilteredList(String a_type, String a_value, String a_expectedValue) 
+	{
+		ArrayList<String> w_filteredList =  null;
+
+		if(a_type.equals("Color") && a_expectedValue.equals("Registeration No"))
+		{
+			w_filteredList = new ArrayList<String>();
+			for(Integer slotNo: m_slotVsCarInfo.keySet())
+			{
+				if(m_slotVsCarInfo.get(slotNo).getColor().equalsIgnoreCase(a_value))
+				{
+					w_filteredList.add(m_slotVsCarInfo.get(slotNo).getRegNo());
+				}
+			}
+		}
+		else if (a_type.equals("Color") && a_expectedValue.equals("Slots"))
+		{
+			w_filteredList = new ArrayList<String>();
+			for(Integer slotNo: m_slotVsCarInfo.keySet())
+			{
+				if(m_slotVsCarInfo.get(slotNo).getColor().equalsIgnoreCase(a_value))
+				{
+					w_filteredList.add(String.valueOf(slotNo));
+				}
+			}
+		}
+		else if (a_type.equals("RegisterationNo"))
+		{
+			w_filteredList = new ArrayList<String>();
+			for(Integer slotNo: m_slotVsCarInfo.keySet())
+			{
+				if(m_slotVsCarInfo.get(slotNo).getRegNo().equalsIgnoreCase(a_value))
+				{
+					w_filteredList.add(String.valueOf(slotNo));
+				}
+			}
+		}
+		
+		if (w_filteredList.isEmpty())
+			w_filteredList.add("Not Found");
+		
+		return w_filteredList;
+	}
+
+	public String getStatus()
+	{
+		String w_status = "";
+		int w_counter = 1;
+		for(Integer slotNo: m_slotVsCarInfo.keySet())
+		{
+			w_status+= + w_counter + ".Slot No: " + slotNo + ",Registeration No: " + m_slotVsCarInfo.get(slotNo).getRegNo() +
+						",Color: " + m_slotVsCarInfo.get(slotNo).getColor()+ "\n";
+			w_counter++;
+		}
+		
+		return w_status;
+		
+	}
 }
