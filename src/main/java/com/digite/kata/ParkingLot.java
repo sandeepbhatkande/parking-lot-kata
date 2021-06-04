@@ -177,4 +177,11 @@ public class ParkingLot
 
         return w_list;
     }
+
+    public String getCurrentStatus()
+    {
+        String w_status = "";
+
+        return w_status;
+    }
 }

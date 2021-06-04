@@ -188,4 +188,22 @@ public class TestParkingLot
         Assertions.assertEquals(3,  w_parkLot.getSlotListOfSameColor("Blue").get(1));
     }
 
+    //given test case in Readme.MD
+    @Test
+    public void testDisplayCurrentStatus()
+    {
+        ParkingLot w_parkLot = new ParkingLot(6);
+        Car w_car1 = new Car("White","KA-01-HH-1234", "Peter"); w_parkLot.park(w_car1);
+        Car w_car2 = new Car("White","KA-01-HH-9999", "Olivia"); w_parkLot.park(w_car2);
+        Car w_car3 = new Car("Black","KA-01-BB-0001", "Walter"); w_parkLot.park(w_car3);
+        Car w_car4 = new Car("Red","KA-01-HH-7777", "Bishop"); w_parkLot.park(w_car4);
+        Car w_car5 = new Car("Blue","KA-01-HH-2701", "John"); w_parkLot.park(w_car5);
+        Car w_car6 = new Car("Black","KA-01-HH-3141", "Astrid"); w_parkLot.park(w_car6);
+        w_parkLot.Leave(w_car4);
+        Car w_car7 = new Car("White","KA-01-P-333", "Liam"); w_parkLot.park(w_car7);
+        Car w_car8 = new Car("White","DL-12-AA-9999", "Scott"); w_parkLot.park(w_car8);
+
+        Assertions.assertEquals("Slot No: Car No: Car Color: Car Owner", w_parkLot.getCurrentStatus());
+    }
+
 }
