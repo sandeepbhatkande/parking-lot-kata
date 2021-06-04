@@ -24,4 +24,20 @@ public class ParkingInfo {
         return w_regNoList;
     }
 
+    public int getSlotNoByCarRegNo(String RegNo) {
+        int slot = 0;
+        HashMap<Integer, Car> w_slotAllocationMap = parkingLot.getSlotAllocationMap();
+        for (Integer parkingSlot: w_slotAllocationMap.keySet())
+        {
+            Car car = w_slotAllocationMap.get(parkingSlot);
+
+            if (car.getREG_NO() == RegNo) {
+                slot = parkingSlot;
+                break;
+            }
+        }
+
+        return slot;
+    }
+
 }

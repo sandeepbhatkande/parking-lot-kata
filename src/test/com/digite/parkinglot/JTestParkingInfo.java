@@ -33,4 +33,9 @@ public class JTestParkingInfo {
         assertEquals(w_regNoList.toString(), w_ParkingInfo.getRegNosByCarColor("White").toString());
     }
 
+    @Test
+    public void testGetSlotNoByCarRegNo() {
+        assertEquals(2, w_ParkingInfo.getSlotNoByCarRegNo("MH11225"));
+    }
+
 }
