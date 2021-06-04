@@ -24,4 +24,9 @@ public class ParkingDetailsRepo {
 		return parkedCars.get(slotId);
 	}
 	
+	public void removeParkedCar(int slotId) {
+		parkedCars.get(slotId).setParked(false);
+		parkedCars.remove(slotId);
+	}
+	
 }

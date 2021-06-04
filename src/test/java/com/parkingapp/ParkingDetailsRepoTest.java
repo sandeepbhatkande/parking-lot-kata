@@ -34,4 +34,18 @@ public class ParkingDetailsRepoTest {
 		assertTrue(responseDetails.getSlotId() == slotId);
 		assertTrue(responseDetails.isParked() == true);
 	}
+	
+	@Test
+	public void testRemoveParkedCar() {
+		Car car = new Car("KA-01-HH-1234", "White");
+		int slotId = 10;
+		boolean parked = true;
+		
+		ParkingDetails parkingDetails = new ParkingDetails(car, slotId, parked);
+		
+		ParkingDetailsRepo parkingDetailsRepo = new ParkingDetailsRepo();
+		parkingDetailsRepo.addDetails(parkingDetails);
+		parkingDetailsRepo.removeParkedCar(slotId);
+		assertEquals(parkingDetailsRepo.getDetailsBySlot(slotId),null);
+	}
 }

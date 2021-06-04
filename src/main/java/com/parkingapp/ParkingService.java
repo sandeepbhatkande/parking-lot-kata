@@ -23,4 +23,10 @@ public class ParkingService {
 		}
 	}
 
+	public String leave(int slotId) {
+		parkingLot.freeUpSlot(slotId);
+		parkingDetailsRepo.removeParkedCar(slotId);
+		return "Slot number " + slotId + " is free";
+	}
+
 }
