@@ -14,19 +14,14 @@ public class ParkingSlot {
 
     public void parkCar(Car w_car) throws Exception {
         int parkingLot = searchNearestParkingSlot();
-        Car existingCar = w_parkedCars.get(parkingLot);
         if (w_parkedCars.size() <= parkingLotCount && parkingLot != 0) {
-            if (existingCar == null) {
-                w_car.setParkingSlot(parkingLot);
-                w_parkedCars.put(parkingLot, w_car);
-                System.out.println("Allocated slot number: " + parkingLot);
-            } else {
-                throw new Exception("Slot " + parkingLot + " is already full");
-            }
+            w_car.setParkingSlot(parkingLot);
+            w_parkedCars.put(parkingLot, w_car);
+            System.out.println("Allocated slot number: " + parkingLot);
         }
         else
         {
-            System.out.println("Sorry, parking lot is full");
+            throw new Exception("Sorry, parking lot is full");
         }
     }
 
@@ -39,7 +34,6 @@ public class ParkingSlot {
         if (existingCar != null) {
             w_parkedCars.remove(parkingLot);
             System.out.println("Slot number " + parkingLot + " is free");
-
         }
         else
             throw new Exception("Slot is already empty");
@@ -73,6 +67,19 @@ public class ParkingSlot {
             if (color.equals(car.getColor()))
                 w_searchdCars.put(parkingSlot, car);
         }
+        return w_searchdCars;
+    }
+
+    public Car searchCarsBasedOnRegNo(String RegNo) throws Exception {
+        Car w_searchdCars = null;
+        for (Integer parkingSlot: w_parkedCars.keySet()) {
+            Car car = w_parkedCars.get(parkingSlot);
+            if (RegNo.equals(car.getRegistrationNumber()))
+                w_searchdCars = car;
+        }
+        if (w_searchdCars == null)
+            throw new Exception("Not found");
+
         return w_searchdCars;
     }
 }

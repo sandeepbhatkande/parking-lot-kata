@@ -23,6 +23,8 @@ public class TestParkingSlot {
         Assertions.assertEquals(1, parkedCars.get(1).getParkingSlot());
     }
 
+    /*
+    No need of this test as nearest slot is assign utomatically
     @Test
     @Order(2)
     public void testParkSecondCarAtFullSlot() {
@@ -34,13 +36,14 @@ public class TestParkingSlot {
             Assertions.assertEquals("Slot 1 is already full", e.getMessage());
         }
     }
+    */
 
     @Test
     @Order(3)
     public void testLeaveCar() throws Exception {
         slot.leaveCar(1);
         HashMap<Integer, Car> w_parkedCars = slot.getParkedCars();
-        slot.getParkingLogStatus();
+        //slot.getParkingLogStatus();
         Assertions.assertTrue(!w_parkedCars.containsKey(1));
     }
 
@@ -75,6 +78,49 @@ public class TestParkingSlot {
         for (Integer parkingSlot: w_searchdCars.keySet()) {
             Car car = w_searchdCars.get(parkingSlot);
             Assertions.assertEquals("White", car.getColor());
+        }
+    }
+
+    @Test
+    @Order(7)
+    public void testSlotNoOfCarsBasedOnColor() throws Exception {
+        HashMap<Integer, Car> w_searchdCars = slot.searchCarsBasedOnColor("White");
+        for (Integer parkingSlot: w_searchdCars.keySet()) {
+            Car car = w_searchdCars.get(parkingSlot);
+            Assertions.assertEquals(parkingSlot, car.getParkingSlot());
+            Assertions.assertEquals(parkingSlot, car.getParkingSlot());
+        }
+    }
+
+    @Test
+    @Order(8)
+    public void testSlotNoOfCarsBasedOnRegNo() throws Exception {
+        Car w_searchdCar = slot.searchCarsBasedOnRegNo("MH 02 123457");
+        Assertions.assertEquals(1, w_searchdCar.getParkingSlot());
+    }
+
+    @Test
+    @Order(9)
+    public void testAllSlotsAreFull() throws Exception {
+        Car c4 = new Car("KA-01-HH-1234", "White");
+        Car c5 = new Car("KA-01-HH-9999", "White");
+        Car c6 = new Car("KA-01-BB-0001", "Black");
+        Car c7 = new Car("KA-01-HH-7777", "Red");
+        Car c8 = new Car("KA-01-HH-2701", "Blue");
+        Car c9 = new Car("KA-01-HH-3141", "Black");
+        Car c10 = new Car("MH 02 123450", "Black");
+        slot.parkCar(c4);
+        slot.parkCar(c5);
+        slot.parkCar(c6);
+        slot.parkCar(c7);
+        slot.parkCar(c8);
+        slot.parkCar(c9);
+        slot.parkCar(c10);
+        try {
+            Car c11 = new Car("MH 02 123451", "Black");
+            slot.parkCar(c11);
+        } catch (Exception e) {
+            Assertions.assertEquals("Sorry, parking lot is full", e.getMessage());
         }
     }
 }
