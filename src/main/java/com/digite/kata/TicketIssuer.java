@@ -52,7 +52,7 @@ public class TicketIssuer
         if(m_bookedList == null)
             m_bookedList = new ArrayList<Integer>();
         m_bookedList.add(w_availableSlot);
-        m_availableList.remove(w_availableSlot);
+        m_availableList.remove(0);
         Collections.sort(m_availableList);
     }
 }
