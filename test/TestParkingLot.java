@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestParkingLot {
 
-    static   ParkingLot slot;
+    static ParkingLot slot;
 
     @BeforeAll
-    public  static void setup() {
+    public static void setup() {
         slot = new ParkingLot(10);
     }
 
@@ -20,50 +20,52 @@ public class TestParkingLot {
         Car car = new Car("MH 02 123456", "Black");
 
 
-        assertEquals(1, slot.parkCarandGetSlotNo( car));
+        assertEquals(1, slot.parkCarandGetSlotNo(car));
     }
 
     @Test
     void testcarparkfull() throws Exception {
 
         Car car;// =
-        for (int z=0; z<10; z++ ) {
-            car=new Car("car"+z,"white");
-            slot.parkCarandGetSlotNo( car);
+        for (int z = 0; z < 10; z++) {
+            car = new Car("car" + z, "white");
+            slot.parkCarandGetSlotNo(car);
         }
         car = new Car("MH 02 123456", "Black");
-        assertEquals(-1, slot.parkCarandGetSlotNo( car));
+        assertEquals(-1, slot.parkCarandGetSlotNo(car));
     }
+
     @Test
     void TestLeaveCar() throws Exception {
         Car car = new Car("MH 02 123456", "Black");
-        int no=slot.parkCarandGetSlotNo( car);
+        int no = slot.parkCarandGetSlotNo(car);
         slot.leaveCar(no);
-        assertEquals("Slot number " + no + " is free",slot.leaveCar(no));
+        assertEquals("Slot number " + no + " is free", slot.leaveCar(no));
     }
 
     @Test
     void TestgetRegfromColor() throws Exception {
-        Car car=new Car("MH 02 12345", "white");
+        Car car = new Car("MH 02 12345", "white");
         slot.parkCarandGetSlotNo(car);
-        assertEquals("car with black color not found",slot.getRegfromColor("black"));
+        assertEquals("car with black color not found", slot.getRegfromColor("black"));
         car = new Car("MH 02 123456", "black");
         slot.parkCarandGetSlotNo(car);
-        car=new Car("MH 02 1234", "yellow");
+        car = new Car("MH 02 1234", "yellow");
         slot.parkCarandGetSlotNo(car);
-        assertEquals("MH 02 123456",slot.getRegfromColor("black"));
+        assertEquals("MH 02 123456", slot.getRegfromColor("black"));
 
     }
+
     @Test
     void TestgetSlotNofromColor() throws Exception {
-        Car car=new Car("MH 02 12345", "white");
+        Car car = new Car("MH 02 12345", "white");
         slot.parkCarandGetSlotNo(car);
-        assertEquals("car with black color not found",slot.getRegfromColor("black"));
+        assertEquals("car with black color not found", slot.getRegfromColor("black"));
         car = new Car("MH 02 123456", "black");
         slot.parkCarandGetSlotNo(car);
-        car=new Car("MH 02 1234", "yellow");
+        car = new Car("MH 02 1234", "yellow");
         slot.parkCarandGetSlotNo(car);
-        assertEquals("2",slot.getRegfromColor("black"));
+        assertEquals("2", slot.getRegfromColor("black"));
 
     }
 }

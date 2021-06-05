@@ -7,14 +7,14 @@ public class TestCar
 
     @Test
     public void newcar() {
-        Car c = new Car("car1", "white");
+        Car w_car = new Car("car1", "white");
     }
 
     @Test
     public void cardetails() {
-        Car c = new Car("car1","black"  );
-        assertTrue("car1".equals(c.getRegistrationNo()));
-        assertTrue("black".equals(c.getColor()));
+        Car w_car = new Car("car1","black"  );
+        assertTrue("car1".equals(w_car.getRegistrationNo()));
+        assertTrue("black".equals(w_car.getColor()));
     }
 
 }
