@@ -18,13 +18,6 @@ public class JTestParkingLot
 	}
 	
 	@Test
-	public void parkingLotCreateNegativeInput()
-	{
-		ParkingLot w_parkingLot = new ParkingLot(-1);
-		assertEquals("Created a parking lot with 0 slots", w_parkingLot.getParkingSlot());	
-	}
-	
-	@Test
     public void testGetAllocatedSlotNo()
     {
         ParkingLot w_parkingLot = new ParkingLot(10);
@@ -54,8 +47,7 @@ public class JTestParkingLot
 	     Assertions.assertEquals("Allocated slot number: 3", w_parkingLot.getAllocatedSlotNo(w_car3));
 		     	
 		 Car w_car4 = new Car("Black", "MH-03-9004", "Sakshe Goja");
-		 Assertions.assertEquals("Sorry, parking lot is full",
-		 w_parkingLot.getAllocatedSlotNo(w_car4));
+		 Assertions.assertEquals("Sorry, parking lot is full", w_parkingLot.getAllocatedSlotNo(w_car4));
 			 
 	 }
     
@@ -127,7 +119,7 @@ public class JTestParkingLot
 	    w_expectedRegistertionNoList.add("MH-03-9000");
 	    w_expectedRegistertionNoList.add("MH-03-9003");
 	    
-	    ArrayList<String> w_registerationNosList = w_parkingLot.getFilteredList("Color", "White", "Registeration No");
+	    ArrayList<String> w_registerationNosList = w_parkingLot.getRegisterationNosDependingOnColor("White");
 	    Assertions.assertEquals(w_expectedRegistertionNoList, w_registerationNosList);
  
 	}
@@ -156,7 +148,7 @@ public class JTestParkingLot
 	    w_expectedSlotNoList.add("4");
 	    w_expectedSlotNoList.add("5");
 	    
-	    ArrayList<String> w_slotNosList = w_parkingLot.getFilteredList("Color", "Black", "Slots");
+	    ArrayList<String> w_slotNosList = w_parkingLot.getSlotNoDependingOnColor("Black");
 	    Assertions.assertEquals(w_expectedSlotNoList, w_slotNosList);
  
 	}
@@ -181,17 +173,11 @@ public class JTestParkingLot
 	    Car w_car5 = new Car("Black", "MH-03-9005", "Jishan Shaikh");
 	    Assertions.assertEquals("Allocated slot number: 5", w_parkingLot.getAllocatedSlotNo(w_car5));
 	    
-	    ArrayList<String> w_expectedSlotNo = new ArrayList<String>();
-	    w_expectedSlotNo.add("4");
+	    String w_slotNo = w_parkingLot.getSlotNoForRegisterationNo("MH-03-9004");
+	    Assertions.assertEquals("4", w_slotNo);
 	    
-	    ArrayList<String> w_slotNoList = w_parkingLot.getFilteredList("RegisterationNo", "MH-03-9004", null);
-	    Assertions.assertEquals(w_expectedSlotNo, w_slotNoList);
-	    
-	    ArrayList<String> w_expectedSlotNo1 = new ArrayList<String>();
-	    w_expectedSlotNo1.add("Not Found");
-	    
-	    ArrayList<String> w_slotNoList1 = w_parkingLot.getFilteredList("RegisterationNo", "MH-03-9006", null);
-	    Assertions.assertEquals(w_expectedSlotNo1, w_slotNoList1);
+	    String w_slotNo1 = w_parkingLot.getSlotNoForRegisterationNo("MH-03-9006");
+	    Assertions.assertEquals("Not Found", w_slotNo1);
  
 	}
     

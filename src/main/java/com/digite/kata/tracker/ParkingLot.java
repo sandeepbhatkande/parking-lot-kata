@@ -11,16 +11,15 @@ public class ParkingLot
     private ArrayList<Integer> m_bookedList = null;
     private HashMap<Integer, Car> m_slotVsCarInfo =  new HashMap<Integer, Car>();
 	
-    public ParkingLot(int parkingSlot) 
+    public ParkingLot(int a_parkingSlot) 
     {
-    	if (parkingSlot < 0)
-    		parkingSlot = 0;
-        this.m_parkingSlot = parkingSlot;
+    	//replace with Math.max
+        this.m_parkingSlot = Math.max(0, a_parkingSlot);
         
         if (m_availableList == null)
         {
             m_availableList = new ArrayList<Integer>();
-            for (int i = 1; i <= parkingSlot; i++)
+            for (int i = 1; i <= m_parkingSlot; i++)
             {
             	m_availableList.add(i);
             }
@@ -38,7 +37,7 @@ public class ParkingLot
     	if (m_availableList.isEmpty())
     		return "Sorry, parking lot is full";
     	
-        int w_availableSlot = m_availableList.get(0);
+        int w_availableSlot = m_availableList.get(0);  //replace with smallest no logic
         String w_AllocatedSlotNo = "Allocated slot number: " + w_availableSlot;
         updatelists(w_availableSlot);
         m_slotVsCarInfo.put(w_availableSlot, a_car);
@@ -65,50 +64,6 @@ public class ParkingLot
     	return "Slot number " + a_slotNo + " is free";
     }
     
-    public ArrayList<String> getFilteredList(String a_type, String a_value, String a_expectedValue) 
-	{
-		ArrayList<String> w_filteredList =  null;
-
-		if(a_type.equals("Color") && a_expectedValue.equals("Registeration No"))
-		{
-			w_filteredList = new ArrayList<String>();
-			for(Integer slotNo: m_slotVsCarInfo.keySet())
-			{
-				if(m_slotVsCarInfo.get(slotNo).getColor().equalsIgnoreCase(a_value))
-				{
-					w_filteredList.add(m_slotVsCarInfo.get(slotNo).getRegNo());
-				}
-			}
-		}
-		else if (a_type.equals("Color") && a_expectedValue.equals("Slots"))
-		{
-			w_filteredList = new ArrayList<String>();
-			for(Integer slotNo: m_slotVsCarInfo.keySet())
-			{
-				if(m_slotVsCarInfo.get(slotNo).getColor().equalsIgnoreCase(a_value))
-				{
-					w_filteredList.add(String.valueOf(slotNo));
-				}
-			}
-		}
-		else if (a_type.equals("RegisterationNo"))
-		{
-			w_filteredList = new ArrayList<String>();
-			for(Integer slotNo: m_slotVsCarInfo.keySet())
-			{
-				if(m_slotVsCarInfo.get(slotNo).getRegNo().equalsIgnoreCase(a_value))
-				{
-					w_filteredList.add(String.valueOf(slotNo));
-				}
-			}
-		}
-		
-		if (w_filteredList.isEmpty())
-			w_filteredList.add("Not Found");
-		
-		return w_filteredList;
-	}
-
 	public String getStatus()
 	{
 		String w_status = "";
@@ -122,5 +77,45 @@ public class ParkingLot
 		
 		return w_status;
 		
+	}
+
+	public ArrayList<String> getRegisterationNosDependingOnColor(String a_color) 
+	{
+		ArrayList<String> w_filteredRegisterationNos = new ArrayList<String>();
+		for(Integer slotNo: m_slotVsCarInfo.keySet())
+		{
+			if(m_slotVsCarInfo.get(slotNo).getColor().equalsIgnoreCase(a_color))
+			{
+				w_filteredRegisterationNos.add(m_slotVsCarInfo.get(slotNo).getRegNo());
+			}
+		}
+		return w_filteredRegisterationNos;
+	}
+
+	public ArrayList<String> getSlotNoDependingOnColor(String a_color) 
+	{
+		ArrayList<String> w_filteredSlotNos = new ArrayList<String>();
+		for(Integer slotNo: m_slotVsCarInfo.keySet())
+		{
+			if(m_slotVsCarInfo.get(slotNo).getColor().equalsIgnoreCase(a_color))
+			{
+				w_filteredSlotNos.add(String.valueOf(slotNo));
+			}
+		}
+		return w_filteredSlotNos;
+	}
+
+	public String getSlotNoForRegisterationNo(String a_registerationNo) 
+	{
+		String w_slotNo = null;
+		for(Integer slotNo: m_slotVsCarInfo.keySet())
+		{
+			if(m_slotVsCarInfo.get(slotNo).getRegNo().equalsIgnoreCase(a_registerationNo))
+				w_slotNo = String.valueOf(slotNo);
+		}
+		if (w_slotNo == null)
+			return "Not Found";
+		
+		return w_slotNo;
 	}
 }
