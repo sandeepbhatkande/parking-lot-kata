@@ -15,10 +15,7 @@ public class ParkingLot
 
     ParkingLot(int a_slots)
     {
-        if (a_slots < 0)
-            a_slots = 0;
-
-        this.m_slots = a_slots;
+        this.m_slots = Math.max(0, a_slots);
         intializeLists();
     }
 
@@ -59,7 +56,6 @@ public class ParkingLot
             w_ticket = "Name : " + w_car.getOwner() + ", Parking Slot : " + w_slot + ", Registeration No: "
                     + w_car.getRegNo() + ", Color: " + w_car.getColor() + "";
 
-
             updateMap(w_slot, w_car);
 
         } else
@@ -90,46 +86,20 @@ public class ParkingLot
     public void Leave(Car w_car)
     {
         int w_slotToEmpty = getSlotNumberByRegisterationNo(w_car.getRegNo());
-        for(int w_slot : m_slotWiseCarInfo.keySet())
-        {
-            if(m_slotWiseCarInfo.get(w_slot).getRegNo().equals(w_car.getRegNo()))
-            {
-                w_slotToEmpty = w_slot;
-                break;
-            }
-        }
-
         if(w_slotToEmpty > 0)
         {
             //remove from bookedlists and addtoAvailableList
-            int index = 0;
-            for(int w_slot : m_bookedList)
-            {
-                if(w_slot == w_slotToEmpty)
-                {
-                   m_bookedList.remove(index);
-                   m_availableList.add(w_slotToEmpty);
-                   break;
-                }
-                index++;
-            }
+            m_bookedList.remove(m_bookedList.indexOf(w_slotToEmpty));
+            m_availableList.add(w_slotToEmpty);
 
             //remove from maps
             m_slotWiseCarInfo.remove(w_slotToEmpty);
-            index = 0;
+
             ArrayList<String> list = getCarListOfSameColor(w_car.getColor());
-            for(String w_regNo : list)
-            {
-                if(w_regNo.equals(w_car.getRegNo()))
-                {
-                    break;
-                }
-                index++;
-            }
-            list.remove(index);
+            list.remove(list.indexOf(w_car.getRegNo()));
             m_colorWiseCarInfo.put(w_car.getColor(), list);
         }
-
+        //take from smallest number
         Collections.sort(m_availableList);
     }
 

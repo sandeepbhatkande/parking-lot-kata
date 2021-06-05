@@ -7,15 +7,15 @@ public class TestCar
 {
     Car w_car = new Car("Red", "KA-01-HH-1234", "Shraddha");
     @Test
-    public  void testgetCarColor()
-    {
-       Assertions.assertEquals("Red", w_car.getColor());
-    }
+public  void testgetCarColor()
+{
+    Assertions.assertEquals("Red", w_car.getColor());
+}
 
     @Test
     public  void testgetCarReg()
     {
-      Assertions.assertEquals("KA-01-HH-1234", w_car.getRegNo());
+        Assertions.assertEquals("KA-01-HH-1234", w_car.getRegNo());
     }
 
     @Test

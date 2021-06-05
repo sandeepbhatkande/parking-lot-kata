@@ -3,6 +3,8 @@ package com.digite.kata;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 public class TestParkingLot
 {
     @Test
@@ -212,5 +214,6 @@ public class TestParkingLot
                 "5|KA-01-HH-2701|Blue|John|\n" +
                 "6|KA-01-HH-3141|Black|Astrid|\n", w_status);
     }
+
 
 }
