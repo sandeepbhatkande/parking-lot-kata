@@ -6,7 +6,7 @@ When a car enters my parking lot, I want to have a ticket issued to the driver. 
 
 The customer should be allocated a parking slot which is nearest to the entry. At the exit the customer returns the ticket which then marks the slot they were using as being available. Due to government regulation, the system should provide me with the ability to find out:
 
- - Registration numbers of all cars of a particular colour.
+ - Registration numbers of all cars of a particul**ar colour.
  - Slot number in which a car with a given registration number is parked.
  - Slot numbers of all slots where a car of a particular colour is parked.
 
