@@ -1,4 +1,4 @@
-
+package com.digite.kata.tracker;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

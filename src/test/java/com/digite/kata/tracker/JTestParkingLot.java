@@ -1,12 +1,10 @@
-import static org.junit.Assert.assertEquals;
+package com.digite.kata.tracker;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.digite.kata.tracker.Car;
-import com.digite.kata.tracker.ParkingLot;
 
 public class JTestParkingLot 
 {
@@ -14,7 +12,7 @@ public class JTestParkingLot
 	public void parkingLotCreated()
 	{
 		ParkingLot w_parkingLot = new ParkingLot(6);
-		assertEquals("Created a parking lot with 6 slots", w_parkingLot.getParkingSlot());	
+		Assertions.assertEquals("Created a parking lot with 6 slots", w_parkingLot.getParkingSlot());	
 	}
 	
 	@Test
@@ -46,7 +44,7 @@ public class JTestParkingLot
 	     Car w_car3 = new Car("White", "MH-03-9003", "Amey Patil");
 	     Assertions.assertEquals("Allocated slot number: 3", w_parkingLot.getAllocatedSlotNo(w_car3));
 		     	
-		 Car w_car4 = new Car("Black", "MH-03-9004", "Sakshe Goja");
+		 Car w_car4 = new Car("Black", "MH-03-9004", "Seema Ubhare");
 		 Assertions.assertEquals("Sorry, parking lot is full", w_parkingLot.getAllocatedSlotNo(w_car4));
 			 
 	 }
