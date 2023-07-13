@@ -54,8 +54,8 @@ public class ParkingLot
             m_bookedList.add(w_slot);
             m_availableList.remove(0);
             w_ticket = "Name : " + w_car.getOwner() + ", Parking Slot : " + w_slot + ", Registeration No: "
-                    + w_car.getRegNo() + ", Color: " + w_car.getColor() + "";
-
+                    + w_car.getRegNo() + ", Color: " + w_car.getColor() + "" ;
+            
             updateMap(w_slot, w_car);
 
         } else
