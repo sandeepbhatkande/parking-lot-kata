@@ -163,6 +163,24 @@ public class ParkingLot
                w_status += "-|-|-|-|";
         }
 
+        return w_status;
+    }
+    
+    public String getTicketInfoForPriniting()
+    {
+    	
+        String w_status = "SlotNo|CarNo|CarColor|CarOwner|" + "\n";
+
+        for (int i = 1; i <= this.m_slots ; i++)
+        {
+           if(m_slotWiseCarInfo.containsKey(i))
+           {
+               Car w_car = m_slotWiseCarInfo.get(i);
+               w_status +=   i + "|" + w_car.getRegNo() + "|" + w_car.getColor() + "|" + w_car.getOwner() + "|" + "\n";
+           }
+           else
+               w_status += "-|-|-|-|";
+        }
 
         return w_status;
     }

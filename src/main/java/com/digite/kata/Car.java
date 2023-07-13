@@ -26,5 +26,10 @@ public class Car
     {
         return  m_owner;
     }
+    
+    public String getCarInfo()
+    {
+    	return "The car " + this.m_regNo + " of colour " + this.m_color + " is owned by "+ this.getOwner();
+    }
 
 }
